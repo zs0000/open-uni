@@ -1,0 +1,20 @@
+.card {
+    @apply w-full h-full shadow-sm mb-1 p-4 px-6  hover:cursor-pointer hover:transform duration-500 hover:bg-blueGray-200 bg-gray-100 border border-gray-200 border-opacity-60 rounded ;
+    
+}
+
+.title{
+    @apply font-bold text-2xl tracking-tight;
+}
+
+.top {
+    @apply w-full h-full;
+}
+
+.toptitle {
+    @apply tracking-tight font-bold pl-8 py-2;
+}
+
+.main {
+    @apply bg-gray-50 p-4 px-8 rounded ;
+}

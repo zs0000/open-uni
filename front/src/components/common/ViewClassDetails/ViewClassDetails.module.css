@@ -1,0 +1,21 @@
+.main {
+    @apply w-screen min-h-screen flex flex-col items-center;
+
+}
+
+.responsive {
+    @apply w-full h-full flex flex-col items-center text-white tracking-tight text-2xl;
+    background-image: linear-gradient(to right, #049fc2, #027aa1);
+}
+
+.content {
+    @apply xl:w-8/12 lg:w-9/12 md:w-11/12 flex flex-col items-center w-full h-full;
+}
+
+.top {
+    @apply w-full h-full flex justify-center pt-16;
+}
+
+.title {
+    @apply font-bold tracking-tight;
+}

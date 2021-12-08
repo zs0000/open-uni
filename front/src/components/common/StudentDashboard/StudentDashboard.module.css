@@ -1,0 +1,11 @@
+.main {
+    @apply w-full h-full flex flex-col items-center;
+}
+
+.responsive {
+    @apply w-full h-full flex flex-col md:flex-row;
+}
+
+.left {
+    @apply bg-sky-500 w-full h-full;
+}

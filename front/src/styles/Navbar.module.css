@@ -1,0 +1,20 @@
+
+.bar {
+    @apply  fixed w-full flex flex-col items-center;
+    font-family: 'Outfit';
+}
+.itemscontainer {
+    @apply  w-full flex flex-row bg-sky-200 bg-opacity-70 absolute z-50 ;
+}
+
+.items {
+    @apply w-full flex flex-row justify-end ;
+}
+
+.nav {
+    @apply mr-4 my-2;
+}
+
+.campus {
+    @apply w-full flex flex-col justify-center ml-4;
+}

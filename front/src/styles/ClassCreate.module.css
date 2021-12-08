@@ -1,0 +1,36 @@
+.main {
+    @apply w-screen min-h-screen flex flex-col justify-center items-center;
+}
+
+.responsive {
+    @apply w-full h-full flex flex-col items-center;
+}
+
+.content {
+    @apply w-full h-full flex flex-col items-center;
+}
+
+.inputsform {
+    @apply flex flex-col ;
+}
+
+.inputcontainer {
+    @apply flex flex-col;
+}
+
+.shortinput {
+    @apply bg-blueGray-200 mb-4 bg-opacity-70  focus:bg-gray-50 focus:transform duration-500 py-4 px-5 rounded-md;
+    width: 20rem;
+    outline: none;
+}
+.tallinput {
+    @apply bg-blueGray-200 mb-4 bg-opacity-70  focus:bg-gray-50 focus:transform duration-500 py-4 px-5 rounded-md;
+    width: 20rem;
+    outline: none;
+}
+
+
+
+.inputlabel {
+    @apply tracking-tight font-semibold mb-1 text-sm text-gray-600;
+}

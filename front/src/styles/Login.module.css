@@ -1,0 +1,82 @@
+.main {
+    @apply  w-full flex flex-col items-center justify-center min-h-screen;
+}
+
+.login {
+    @apply text-center pt-10 text-2xl font-bold tracking-tight;
+}
+
+.form {
+    @apply flex flex-col items-center;
+    width: 66%;
+}
+
+.loginform {
+    @apply py-1 rounded-md flex flex-col ;
+}
+
+
+
+.loginbutton {
+    @apply bg-indigo-600 px-4 py-3 rounded-lg text-white ;
+    width: 20rem;
+
+}
+.loginbuttontwo {
+    @apply bg-white shadow border text-indigo-800 border-gray-100 text-center px-5 py-4 rounded ;
+    width: 20rem;
+}
+
+.input {
+    @apply bg-blueGray-200 mb-4 bg-opacity-70  focus:bg-gray-50 focus:transform duration-500 py-4 px-5 rounded-md;
+    width: 20rem;
+    outline: none;
+}
+
+.inputlabel {
+    @apply tracking-tight font-semibold mb-1 text-sm text-gray-600;
+}
+
+.two {
+    @apply relative my-3;
+}
+
+.three {
+    @apply absolute inset-0 flex items-center;
+}
+
+.four {
+    @apply w-full border-t border-gray-300;
+}
+
+.five {
+    @apply relative flex justify-center text-sm;
+}
+
+.six {
+    @apply mx-20 px-2 text-gray-600 text-center bg-white;
+}
+
+@screen xs {
+
+}
+
+@screen sm {
+
+}
+
+@screen md {
+
+}
+
+@screen lg {
+
+}
+
+@screen xl {
+
+}
+
+@screen 2xl {
+
+}

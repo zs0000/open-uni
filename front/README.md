@@ -1,0 +1,1 @@
+# Tailwind - Login & Register routes boilerplate
