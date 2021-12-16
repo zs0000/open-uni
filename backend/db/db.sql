@@ -25,10 +25,25 @@ CREATE TABLE courses (
  course_tag VARCHAR(100) NOT NULL
 );
 
+
+
 CREATE TABLE studentsjoined (
     course_id INT REFERENCES courses (course_id),
-    user_username VARCHAR(255) UNIQUE NOT NULL,
+    user_username VARCHAR(255) NOT NULL,
     user_firstname VARCHAR(255),
     user_lastname VARCHAR(255),
-    user_count VARCHAR(255),
+    course_tag_count VARCHAR(255),
+    course_user_combo VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE assignments (
+    assignment_id SERIAL PRIMARY KEY,
+    course_id INT REFERENCES courses (course_id),
+    assignment_title VARCHAR(255),
+    assignment_start_date DATE NOT NULL,
+    assignment_due_date DATE NOT NULL,
+    assignment_description TEXT NOT NULL,
+    assignment_instruction TEXT NOT NULL,
+    assignment_material_link VARCHAR(255),
+    assignment_past BOOLEAN
 );

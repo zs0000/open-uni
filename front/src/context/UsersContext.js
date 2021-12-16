@@ -14,14 +14,14 @@ export const UsersContextProvider = props => {
     const [usersFirstName, setUsersFirstName] = useState(null);
     const [usersLastName, setUsersLastName] = useState(null);
     const [usersFullName, setUsersFullName] = useState(null);
-
+    const [usersUsername, setUsersUsername] = useState(null);
     const addUserRole = (userRole) => {
         setUsersRole([...usersRole, userRole])
     }
 
 
     return(
-        <UsersContext.Provider value={{users, setUser, usersRole, addUser, setUsersRole, addUserRole,usersFirstName, setUsersFirstName, usersLastName, setUsersLastName, usersFullName, setUsersFullName}}>
+        <UsersContext.Provider value={{users,usersUsername, setUsersUsername, setUser, usersRole, addUser, setUsersRole, addUserRole,usersFirstName, setUsersFirstName, usersLastName, setUsersLastName, usersFullName, setUsersFullName}}>
             {props.children}
         </UsersContext.Provider>
     );

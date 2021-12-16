@@ -6,7 +6,7 @@ import StudentDashboard from "../components/common/StudentDashboard/StudentDashb
 import { Link } from "react-router-dom"
 import TeachersClassesComponent from "../components/common/TeachersClassesComponent/TeachersClassesComponent"
 import { Outlet } from "react-router"
-import { useQuery } from "react-query"
+import { QueryClient, useQuery } from "react-query"
 import LoadingPage from "../components/common/LoadingPage/LoadingPage"
 export default function Dashboard({setAuth}) {
     const {users, setUser} = useContext(UsersContext)
@@ -19,17 +19,20 @@ export default function Dashboard({setAuth}) {
     const options = {
         headers : {'token': localStorage.getItem("token")}
     }
+    const [loaded, setLoaded] = useState(false)
+    const queryClient = new QueryClient()
+    
 
-    const { isLoading, data, error } = useQuery('user-data',() => 
-    DashboardApi.get('/', options)
-    )
+    
 
     async function getUsername() {
        
         try {
             const response = await DashboardApi.get('/', options)
-        
-           
+            const userData = await queryClient.fetchQuery('user-data', () => DashboardApi.get("/", options), {
+                staleTime: 100000,
+            })
+           setLoaded(true)
             setUsername(response.data.user_username)
             setUsersRole(response.data.user_role)
             setUsersFirstName(response.data.user_firstname)
@@ -45,42 +48,19 @@ export default function Dashboard({setAuth}) {
         }
     }
 
+
     useEffect(() => {
         getUsername()
+        
     },[])
 
-    if(isLoading) {
-        return(
-            <div>
-                <LoadingPage/>
-            </div>
-        )
+    if(loaded === false) {
+        return(<LoadingPage />)
     }
 
 
     if(usersRole ===  "teacher") {
-        if (isLoading) {
-            <div className={s.main}>
-            <div className={s.responsive}>
-                <div className={s.content}>
-                <div className={s.top}>
-                    <div className={s.introbox}>
-                       <p className={s.intro}>
-                           Loading Teacher data...
-                       </p>
-                    </div>
-                   
-                    
-                </div>
-                <div className={s.middle}>
-                  
-                  
-                </div>
-            </div>
-            </div>
-            
-        </div>
-        }
+        
         return(
     <Fragment>
         
@@ -112,30 +92,6 @@ export default function Dashboard({setAuth}) {
         )
     }
 
-
-console.log({data})
-if (isLoading) {
-    <div className={s.main}>
-    <div className={s.responsive}>
-        <div className={s.content}>
-        <div className={s.top}>
-            <div className={s.introbox}>
-               <p className={s.intro}>
-                   Loading data...
-               </p>
-            </div>
-           
-            
-        </div>
-        <div className={s.middle}>
-          
-          
-        </div>
-    </div>
-    </div>
-    
-</div>
-}
     return (
      <Fragment>
         

@@ -14,14 +14,15 @@ export const CourseContextProvider = props => {
     const [courseTag, setCourseTag] = useState(null);
     const [courseCategory, setCourseCategory] = useState(null);
     const [courseIdentifier, setCourseIdentifier] = useState(null);
-    const [enrolled, setEnrolled] = useState(false)
-
+    const [enrolled, setEnrolled] = useState(null)
+    const [enrollable, setEnrollable] = useState(null)
+    const [assignmentsList, setAssignments] = useState([])
 
     const addCourses = (course) => {
         setCourses([...courses, course]);
     };
     return(
-        <CourseContext.Provider value={{professor,enrolled, setEnrolled,addCourses,courseTag,courseCategory, setCourseCategory, setCourseTag,courseCapacity,selectedCourse , setSelectedCourse, setCourseCapacity, setProfessor,courseDescription, setCourseDescription,courseTitle, courses,courseIdentifier, setCourseIdentifier, setCourses, setCourseTitle}}>
+        <CourseContext.Provider value={{professor,enrollable, setEnrollable,assignmentsList, setAssignments,enrolled, setEnrolled,addCourses,courseTag,courseCategory, setCourseCategory, setCourseTag,courseCapacity,selectedCourse , setSelectedCourse, setCourseCapacity, setProfessor,courseDescription, setCourseDescription,courseTitle, courses,courseIdentifier, setCourseIdentifier, setCourses, setCourseTitle}}>
             {props.children}
         </CourseContext.Provider>
     );

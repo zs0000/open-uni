@@ -34,7 +34,7 @@ const onSubmitForm = async (e) => {
       
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username)
-      localStorage.setItem('is-user', 'user' )
+      localStorage.setItem('is-user', response.data.role )
       localStorage.setItem('first-name', response.data.firstname)
       localStorage.setItem('last-name', response.data.lastname)
       console.log(response)

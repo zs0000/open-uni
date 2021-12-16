@@ -7,5 +7,5 @@
 }
 
 .left {
-    @apply bg-sky-500 w-full h-full;
+    @apply  w-full h-full;
 }

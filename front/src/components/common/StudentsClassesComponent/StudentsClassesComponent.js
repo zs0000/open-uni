@@ -40,9 +40,9 @@ export default function StudentsClassesComponent() {
     return (
         <div>
            {courses.map((item) => (
-                <div className={s.card} onClick={() => handleCourseSelect(item.course_id)}>
+                <div className={s.card} onClick={() => handleCourseSelect(item.course_id)}  key={item.course_id}>
                     <div className={s.cardtext}>
-                        <div  className={s.titlebox} key={item.course_id}>
+                        <div  className={s.titlebox}>
                         <h2 className={s.title}>
                         {item.course_title}
                         </h2>

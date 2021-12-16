@@ -1,0 +1,52 @@
+.main {
+    @apply w-screen min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blueGray-100 via-blueGray-200 to-blueGray-300;
+}
+
+.responsive {
+    @apply w-full h-full flex-col  flex items-center justify-center  mt-10;
+}
+
+.content {
+    @apply flex flex-col items-center w-full md:w-5/6 lg:w-9/12 xl:w-8/12 h-full md:py-20 xl:pt-28 py-44  bg-white md:rounded-md shadow-sm;
+}
+
+.text {
+    @apply flex flex-col items-center text-center;
+}
+
+.titlebox {
+    @apply w-full mb-8 xl:mb-12 ;
+}
+
+.title {
+    @apply tracking-tight font-bold xl:text-5xl md:text-4xl text-3xl xl:pt-1 pb-2 bg-gradient-to-r from-[#049fc2] to-[#027aa1] bg-clip-text text-transparent;
+}
+
+.descriptionbox {
+    @apply md:w-2/3 w-11/12 mb-4 md:mr-20 flex md:flex-row flex-col;
+}
+
+.description {
+    @apply mx-1 text-lg text-justify tracking-tight text-blueGray-800;
+}
+
+.courselabel {
+    @apply text-blueGray-500 tracking-widest text-sm ;
+}
+
+.coursedescription {
+    @apply text-blueGray-500 tracking-widest px-1 text-sm pt-1;
+}
+
+
+.button {
+    @apply px-6 py-3 my-1  bg-blueGray-200 shadow-sm rounded-lg hover:bg-blueGray-300 hover:transform duration-300;
+}
+
+.cap {
+    @apply mt-1;
+}
+
+.enrollbox {
+    @apply w-full flex flex-col items-center pt-8;
+}

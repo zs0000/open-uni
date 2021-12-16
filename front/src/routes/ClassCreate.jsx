@@ -2,8 +2,17 @@ import React, { Fragment, useState, useEffect, useContext } from 'react'
 import { UsersContext } from '../context/UsersContext'
 import s from "../styles/ClassCreate.module.css"
 import ClassCreateApi from "../apis/ClassCreateApi"
+import { useQueryClient } from 'react-query'
 
 export default function ClassCreate({setAuth}) {
+    
+
+
+    const queryClient = useQueryClient()
+
+    const data = queryClient.getQueryData(`user-data`)
+    console.log(data)
+
     const teacherPersist = localStorage.getItem("username")
     const {users, setUser} = useContext(UsersContext)
     const {usersFirstName, setUsersFirstName} = useContext(UsersContext)
@@ -35,7 +44,7 @@ export default function ClassCreate({setAuth}) {
                 course_capacity:course_capacity,
                 course_tag:course_tag
             })
-            console.log(response.data.status)
+
             if(response.data.status === 200 || response.data.status === "success") {
                 window.location.reload(true);
             }

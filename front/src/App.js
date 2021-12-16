@@ -16,6 +16,10 @@ import ViewClasses from "./components/common/ViewClasses/ViewClasses";
 import ViewClassDetails from "./components/common/ViewClassDetails/ViewClassDetails";
 import ClassDetails from "./routes/ClassDetails";
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import TeachersCreateAssignmentComponent from "./components/common/TeachersCreateAssignmentComponent/TeachersCreateAssignmentComponent";
+import TeachersCreateAssignment from "./routes/TeachersCreateAssignment";
+import ClassAssignments from "./routes/ClassAssignments";
+import NotEnrolledClassView from "./components/common/NotEnrolledClassView/NotEnrolledClassView";
 
 
 toast.configure()
@@ -71,9 +75,17 @@ const App = () => {
           path="/create_class"
           element={isAuthenticated ? <ClassCreate setAuth={setAuth} /> : <Navigate to="/login" /> }
           />
+          <Route path="/create_assignment" element={<TeachersCreateAssignmentComponent/>}/>
           <Route path="view"  >
-            <Route path="*" element={<ClassDetails/> } />
+            <Route path=":course_id" element={<ClassDetails/> } />
           </Route>
+          <Route path="join"  >
+            <Route path=":course_id" element={isAuthenticated ? <NotEnrolledClassView setAuth={setAuth} /> : <Navigate to="/dashboard/"/> } />
+          </Route>
+          <Route path="assignments"  >
+            <Route path=":course_id" element={<ClassAssignments/> } />
+          </Route>
+          
           <Route
       path="*"
         element={isAuthenticated ? <Dashboard setAuth={setAuth} /> : <Navigate to="/login" /> }

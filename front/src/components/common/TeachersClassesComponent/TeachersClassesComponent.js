@@ -7,7 +7,7 @@ import s from "./TeachersClassesComponent.module.css"
 
 export default function TeachersClassesComponent() {
     let navigate = useNavigate();
-    const {users, setUser} = useContext(UsersContext)
+
     const {courses, setCourses} = useContext(CourseContext)
     const {selectedCourse, setSelectedCourse} = useContext(CourseContext);
     const teacherPersist = localStorage.getItem("username")
@@ -15,6 +15,7 @@ export default function TeachersClassesComponent() {
 
     const handleCourseSelect = (course_id) => {
         setSelectedCourse(course_id)
+        localStorage.setItem("recently-selected-course", course_id)
         navigate(`/view/${course_id}`, { replace: true })
     }
 
@@ -24,10 +25,10 @@ export default function TeachersClassesComponent() {
       
         try {
             const res = await TeachersAllExistingClasses.get(`/retrieve/${teacherPersist}`);
-            console.log(res.data.data)
+      
             setCourses(res.data.data.courses)
             
-            console.log(courses)
+ 
         } catch (err) {
             console.error(err.message)
         }
@@ -49,9 +50,9 @@ export default function TeachersClassesComponent() {
                     </div>
                 </div>
             {courses.map((item) => (
-                <div className={s.card} onClick={() => handleCourseSelect(item.course_id)}>
+                <div className={s.card}  key={item.course_id} onClick={() => handleCourseSelect(item.course_id)}>
                     <div className={s.cardtext}>
-                        <div  className={s.titlebox} key={item.course_id}>
+                        <div  className={s.titlebox}>
                         <h2 className={s.title}>
                         {item.course_title}
                         </h2>

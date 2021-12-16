@@ -1,21 +1,40 @@
 .main {
-    @apply w-screen min-h-screen flex flex-col items-center;
+    @apply w-screen min-h-screen flex flex-col bg-gray-200 items-center;
 
 }
 
 .responsive {
-    @apply w-full h-full flex flex-col items-center text-white tracking-tight text-2xl;
-    background-image: linear-gradient(to right, #049fc2, #027aa1);
+    @apply w-full h-full flex flex-row justify-center  tracking-tight  xs:mt-10 ;
+    
 }
 
 .content {
-    @apply xl:w-8/12 lg:w-9/12 md:w-11/12 flex flex-col items-center w-full h-full;
+    @apply xl:w-8/12 lg:w-9/12 bg-white md:w-11/12 flex flex-col items-center w-full h-full;
+    
 }
 
-.top {
-    @apply w-full h-full flex justify-center pt-16;
+.sidebar {
+    @apply md:w-1/5 lg:w-1/6 h-full text-center bg-gray-100;
+}
+
+.sidebartop {
+    @apply w-full h-full flex flex-col justify-center mb-2 border-b pt-6 pb-2 border-blueGray-300;
+   
 }
 
 .title {
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight md:mb-1 mx-2 text-3xl pt-3;
+}
+
+
+.description {
+    @apply   xs:text-base mx-3 text-gray-800 pb-4 ;
+}
+
+.enrollbox {
+    @apply  pb-5;
+}
+
+.button {
+    @apply px-6 py-3 mt-3 bg-blueGray-200 shadow-sm rounded-lg;
 }

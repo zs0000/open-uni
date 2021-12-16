@@ -1,0 +1,51 @@
+.main {
+    @apply min-h-screen w-full flex flex-col items-center bg-blueGray-100;
+}
+
+.responsive {
+    @apply w-full h-full flex flex-col items-center;
+}
+
+.content {
+    @apply flex flex-row justify-center lg:w-9/12 xl:w-8/12 w-full h-full pt-10;
+}
+
+.card {
+    @apply p-4 mb-1 bg-white w-full  ;
+}
+
+.title {
+    @apply text-3xl tracking-tight font-bold ;
+}
+
+.titlebox {
+    @apply pb-2;
+}
+
+.sidebar {
+    @apply md:w-1/5 lg:w-1/6 h-full text-center bg-gray-100;
+}
+
+.descriptionbox {
+    @apply pl-3 mx-2 ;
+}
+
+.description {
+    @apply text-blueGray-600;
+}
+
+.dates {
+    @apply w-full flex flex-col items-end justify-end text-sm;
+}
+
+.toptitlebox {
+    @apply py-4 pt-6
+}
+
+.toptitle {
+    @apply text-lg tracking-widest text-blueGray-600;
+}
+
+.right {
+    @apply flex flex-col h-full w-full items-center;
+}
