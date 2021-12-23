@@ -30,9 +30,10 @@ export default function Dashboard({setAuth}) {
         try {
             const response = await DashboardApi.get('/', options)
             const userData = await queryClient.fetchQuery('user-data', () => DashboardApi.get("/", options), {
-                staleTime: 100000,
+                cacheTime: Infinity,
+                staleTime: Infinity,
             })
-           setLoaded(true)
+           
             setUsername(response.data.user_username)
             setUsersRole(response.data.user_role)
             setUsersFirstName(response.data.user_firstname)
@@ -42,6 +43,11 @@ export default function Dashboard({setAuth}) {
 
             if(users !== undefined && users !== null) {
                 localStorage.setItem("username", users)
+            }
+
+            if(userData.data.user_username !== null){
+                setLoaded(true)
+                console.log("should be true")
             }
         } catch (err) {
             console.error(err.message)
@@ -107,7 +113,13 @@ export default function Dashboard({setAuth}) {
                      </div>
                  </div>
                  <div className={s.middle}>
-                 <StudentDashboard />
+                 <StudentDashboard
+                 usersFullName={usersFullName}
+                 usersFirstName={usersFirstName}
+                 usersLastName={usersLastName}
+                 usersRole={usersRole}
+                 users={users}
+                 />
                  </div>
                  </div>
              </div>

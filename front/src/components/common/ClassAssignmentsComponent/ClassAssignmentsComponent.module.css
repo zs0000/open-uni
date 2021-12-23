@@ -1,0 +1,8 @@
+.main {
+    @apply w-full h-full flex flex-col items-center;
+    min-height: 140px;
+    min-width: 100%;
+}
+.content {
+    @apply grid md:grid-cols-3 grid-rows-1 gap-1 m-2 w-full h-full;
+}

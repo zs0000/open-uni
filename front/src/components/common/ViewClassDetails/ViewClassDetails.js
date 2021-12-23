@@ -11,6 +11,10 @@ import { useNavigate, useParams } from "react-router"
 import LoadingPage from "../LoadingPage/LoadingPage"
 import DashboardApi from "../../../apis/DashboardApi"
 import NotEnrolledClassView from "../NotEnrolledClassView/NotEnrolledClassView"
+import StudentsSidebar from "../StudentsSidebar/StudentsSidebar"
+import ClassAssignmentsComponent from "../ClassAssignmentsComponent/ClassAssignmentsComponent"
+import ClassAnnouncementsComponent from "../ClassAnnouncementsComponent/ClassAnnouncementsComponent"
+import { Link } from "react-router-dom"
 
 export default function ViewClassDetails({professor, courseIdentifier, courseTitle, courseDescription, courseCategory, courseTag, courseCapacity}) {
 
@@ -22,6 +26,7 @@ export default function ViewClassDetails({professor, courseIdentifier, courseTit
     const {usersFirstName, setUsersFirstName} = useContext(UsersContext)
     const {usersLastName, setUsersLastName} = useContext(UsersContext)
     const {usersUsername, setUsersUsername} = useContext(UsersContext)
+    const {assignmentList, setAssignments} = useContext(CourseContext)
     const [loaded, setLoaded] = useState(false)
     let navigate = useNavigate()
     const options = {
@@ -29,6 +34,9 @@ export default function ViewClassDetails({professor, courseIdentifier, courseTit
     }
     
     const queryClient = useQueryClient()
+
+
+
 
         const fetchUserData = async() =>{
                 try {
@@ -51,8 +59,15 @@ export default function ViewClassDetails({professor, courseIdentifier, courseTit
                     cacheTime: 100000,
                 }))
                 if(res.data.data.users.length === 0) {
+                    if(usersRole === "teacher") {
+                        setEnrolled(true)
+                    
+                    }
+                    if(usersRole === "user") {
                     setEnrolled(false)
+                    
                     navigate(`/join/${course_id}`, { replace: true })
+                    }
                 }
                 if(res.data.data.users.length > 0) {
                     setEnrolled(true)
@@ -64,7 +79,11 @@ export default function ViewClassDetails({professor, courseIdentifier, courseTit
         }
 
        
-    
+        const handleCreateAnnouncement = (course_id) => {
+            navigate("/create_announcement", {replace:true})
+        }
+
+
     let { course_id } = useParams()
    
    
@@ -72,7 +91,6 @@ export default function ViewClassDetails({professor, courseIdentifier, courseTit
     useEffect(()=>{
         
         
- 
 
         fetchUserData()
         fetchEnrolledStatus()
@@ -112,11 +130,18 @@ export default function ViewClassDetails({professor, courseIdentifier, courseTit
                 </div>
                 <div className={s.content}>
                 <div className={s.rightsidetop}>
-                    { /* Announcements component */}
+                    <div>
+                        <nav>
+                            <button className={s.button} onClick={() => handleCreateAnnouncement(course_id)}>
+                                Create Announcement
+                            </button>
+                        </nav>
+                    </div>
+                    <ClassAnnouncementsComponent/>
                 </div>
                 
                 <div className={s.rightsidemiddle}>
-                    { /* Assigntments component */}
+                    <ClassAssignmentsComponent  />
                 </div>
                 
                 <div className={s.rightsidebottom}>
@@ -132,19 +157,27 @@ export default function ViewClassDetails({professor, courseIdentifier, courseTit
         return(
             <div className={s.main}>
             <div className={s.responsive}>
+            <div className={s.sidebar}>
+                
+                <StudentsSidebar
+               courseTitle={courseTitle}
+               courseDescription={courseDescription}
+               courseCapacity={courseCapacity}
+               currentCount={currentCount}
+               usersRole={usersRole}
+               />
+                </div>
                 <div className={s.content}>
-                <div className={s.top}>
-                <div className={s.titlebox}>
-                    <h2 className={s.title}>
-                    {courseTitle}
-                    </h2>
+                <div className={s.rightsidetop}>
+                <ClassAnnouncementsComponent/>
                 </div>
+                
+                <div className={s.rightsidemiddle}>
+                    <ClassAssignmentsComponent  />
                 </div>
-                <div className={s.left}>
-            
-                </div>
-                <div className={s.right}>
-                    
+                
+                <div className={s.rightsidebottom}>
+                    { /* Students component */}
                 </div>
                 </div>
             </div>

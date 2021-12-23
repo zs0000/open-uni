@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import s from "./styles/Navbar.module.css"
 import { UsersContext, UsersContextProvider} from './context/UsersContext';
 import { CourseContextProvider } from "./context/CourseContext";
+import { AssignmentContextProvider } from "./context/AssignmentContext";
 import Navbar from "./components/common/Navbar/Navbar";
 import AuthFinder from "./apis/AuthFinder";
 import ClassCreate from "./routes/ClassCreate";
@@ -18,8 +19,10 @@ import ClassDetails from "./routes/ClassDetails";
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import TeachersCreateAssignmentComponent from "./components/common/TeachersCreateAssignmentComponent/TeachersCreateAssignmentComponent";
 import TeachersCreateAssignment from "./routes/TeachersCreateAssignment";
+import TeachersCreateAnnoucementComponent from "./components/common/TeachersCreateAnnouncement/TeachersCreateAnnouncementComponent";
 import ClassAssignments from "./routes/ClassAssignments";
 import NotEnrolledClassView from "./components/common/NotEnrolledClassView/NotEnrolledClassView";
+import ViewAssignmentDetails from "./routes/ViewAssignmentDetails";
 
 
 toast.configure()
@@ -60,6 +63,7 @@ const App = () => {
   return (
     <UsersContextProvider>
       <CourseContextProvider>
+        <AssignmentContextProvider>
         <QueryClientProvider client={queryClient}>
 <div className={s.bar}>
   <Navbar setAuth={setAuth} />
@@ -76,6 +80,7 @@ const App = () => {
           element={isAuthenticated ? <ClassCreate setAuth={setAuth} /> : <Navigate to="/login" /> }
           />
           <Route path="/create_assignment" element={<TeachersCreateAssignmentComponent/>}/>
+          <Route path="/create_announcement" element={<TeachersCreateAnnoucementComponent/>}/>
           <Route path="view"  >
             <Route path=":course_id" element={<ClassDetails/> } />
           </Route>
@@ -84,6 +89,11 @@ const App = () => {
           </Route>
           <Route path="assignments"  >
             <Route path=":course_id" element={<ClassAssignments/> } />
+            <Route path=":course_id/:assignment_id" element={<ViewAssignmentDetails/> } />
+          </Route>
+          <Route path="announcements"  >
+            <Route path=":course_id" element={<ClassAssignments/> } />
+            <Route path=":course_id/:announcement_id" element={<ViewAssignmentDetails/> } />
           </Route>
           
           <Route
@@ -96,6 +106,7 @@ const App = () => {
    
     </div>
     </QueryClientProvider>
+    </AssignmentContextProvider>
     </CourseContextProvider>
 </UsersContextProvider>
   );

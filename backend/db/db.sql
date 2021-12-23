@@ -47,3 +47,13 @@ CREATE TABLE assignments (
     assignment_material_link VARCHAR(255),
     assignment_past BOOLEAN
 );
+
+CREATE TABLE announcements (
+    announcement_id SERIAL PRIMARY KEY,
+    course_id INT REFERENCES courses (course_id),
+    announcement_title VARCHAR(255),
+    announcement_post_date DATE NOT NULL,
+    announcement_description TEXT NOT NULL,
+    announcement_material_link VARCHAR(255),
+    announcement_past BOOLEAN
+);

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Outlet, useParams } from 'react-router'
+import { Outlet, useNavigate, useParams } from 'react-router'
 import s from "./StudentsSidebar.module.css"
 import { Link } from "react-router-dom"
 import { useQueryClient } from 'react-query'
@@ -10,10 +10,26 @@ export default function StudentsSidebar() {
     const recentlySelectedCourse = localStorage.getItem("recently-selected-course")
 
     let { course_id } = useParams() 
+    let navigate = useNavigate();
+
+    const handleClickAssignments = () => {
+
+    }
 
     const queryClient = useQueryClient()
 
     const data = queryClient.getQueryData(`${course_id}-data`)
+    
+    if(data ===undefined) {
+
+      
+
+        return(
+            <div>
+                Loading...
+            </div>
+        )
+    }
 
     return (
         <Fragment>
@@ -24,16 +40,14 @@ export default function StudentsSidebar() {
                     {data.data.data.courseDetails[0].course_title}
                     </h2>
                 </div>
-                <div className={s.descriptionbox}>
-                    <p className={s.description}>
-                    {data.data.data.courseDetails[0].course_description}
-                    </p>
-                </div>
+                
                
                 
                 </div>
                 <div className={s.sidebarlinks}>
                     <nav className={s.navlinks}>
+                        <Link className={s.navlink} to={`/assignments/${recentlySelectedCourse}`}>Assignments</Link>
+                        <Link className={s.navlink} to={`/assignments/${recentlySelectedCourse}`}>Assignments</Link>
                         <Link className={s.navlink} to={`/assignments/${recentlySelectedCourse}`}>Assignments</Link>
                     </nav>
                 </div>

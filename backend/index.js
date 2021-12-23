@@ -44,6 +44,16 @@ app.use("/join_class", require("./routes/studentsJoinClass"))
 //handles retrieval, creation, deletion, and completion of assignments
 app.use("/create_assignment", require("./routes/teachersHandleAssignments"))
 
+//handles retrieval, creation, deletion, and completion of assignments
+app.use("/create_announcement", require("./routes/teachersHandleAnnouncements"))
+
+//handles interactions with assignments
+app.use("/assignment_details", require("./routes/grabAssignmentDetails"))
+
+//handles interactions with annoucements
+app.use("/announcement_details", require("./routes/grabAnnouncements"))
+
+
 app.listen(port, (req, res) => {
         console.log(`App running at http://localhost:${port}`)
 })

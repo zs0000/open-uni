@@ -5,18 +5,29 @@ import s from "./StudentDashboard.module.css"
 
 
 
-export default function StudentDashboard() {
+export default function StudentDashboard({
+    usersFirstName,
+    usersLastName,
+    usersFullName,
+    usersRole,
+    users
+}) {
 
    
 
     return (
-        <Fragment>
+        <Fragment> 
         <div className={s.main}>
             <div className={s.responsive}>
                 <div className={s.content}>
                 <div className={s.left}>
                     <div className={s.placeholder}>
-                        <StudentsClassesComponent />    
+                        <StudentsClassesComponent
+                        usersFullName={usersFullName}
+                        usersFirstName={usersFirstName}
+                        usersLastName={usersLastName}
+                        usersRole={usersRole}
+                        users={users} />    
                     </div>
                 </div>
                 <div className={s.right}>

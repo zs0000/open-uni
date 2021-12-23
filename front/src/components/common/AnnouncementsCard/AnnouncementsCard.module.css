@@ -1,0 +1,35 @@
+.card {
+    @apply p-4 border  border-blueGray-200 hover:bg-blueGray-100 hover:transform hover:cursor-pointer duration-500 rounded-md w-full;
+    min-height:100%
+
+}
+
+.textbox {
+    @apply flex flex-col w-full h-full;
+}
+
+.titlebox {
+    @apply w-full h-full flex flex-col mb-4 items-center justify-center ;
+}
+
+.titlelabel {
+    @apply text-xs text-indigo-600 pt-2;
+}
+
+
+.descriptionbox {
+    @apply w-full h-full flex justify-center items-center;
+    
+}
+
+.description {
+    @apply tracking-tight lg:w-11/12 w-5/6 ;
+}
+
+.title {
+    @apply text-3xl tracking-tight font-bold mt-1 truncate;
+}
+
+.dates {
+    @apply h-full flex flex-row justify-end mt-4 mr-2 text-xs items-end text-blueGray-800;
+}

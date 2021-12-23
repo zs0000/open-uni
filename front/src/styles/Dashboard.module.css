@@ -8,7 +8,7 @@
     
     
 }
-.content {
+.content { 
     @apply w-full h-full md:w-11/12 lg:w-9/12 xl:w-8/12;
     
 }

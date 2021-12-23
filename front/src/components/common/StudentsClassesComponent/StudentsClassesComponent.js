@@ -1,21 +1,37 @@
 import React, { useContext, useEffect } from 'react'
+import { Query, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
+import DashboardApi from '../../../apis/DashboardApi';
 import StudentsAllAvailableClasses from '../../../apis/StudentsAllAvailableClasses';
+import UserCheck from '../../../apis/UserCheck';
 import { CourseContext } from '../../../context/CourseContext';
 import s from "./StudentsClassesComponent.module.css"
 
 
-export default function StudentsClassesComponent() {
+export default function StudentsClassesComponent({
+
+}) {
     let navigate = useNavigate()
+    let queryClient = useQueryClient()
+    let userPersist = localStorage.getItem("username")
+
     const {selectedCourse, setSelectedCourse} = useContext(CourseContext)
     const {courses, setCourses} = useContext(CourseContext)
-    const userPersist = localStorage.getItem("username")
+
+    const options = {
+        headers : {'token': localStorage.getItem("token")}
+    }
     useEffect(()=> {
+
+     
+
+
         const fetchAvailableCourses = async() => {
             try {
                
                const res = await StudentsAllAvailableClasses.get(`/retrieve/${userPersist}`);
-                setCourses(res.data.data.courses)
+                
+               setCourses(res.data.data.courses)
 
           
                
@@ -23,14 +39,19 @@ export default function StudentsClassesComponent() {
                 console.error(err.message)
             }
         }
-        
+   
         fetchAvailableCourses();
     },[])
 
    
-    const handleCourseSelect = (course_id) => {
+    const handleCourseSelect = async(course_id) => {
         setSelectedCourse(course_id)
         localStorage.setItem("recently-selected-course", course_id)
+        
+    
+     const prefetchEnrolledStatus = await queryClient.prefetchQuery(`${course_id}${userPersist}`, ()=>UserCheck.get(`/${course_id}/${userPersist}`,{
+            cacheTime: 100000,
+        }))
         navigate(`/view/${course_id}`, { replace: true })
     }
 

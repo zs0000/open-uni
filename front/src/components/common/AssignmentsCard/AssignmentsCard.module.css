@@ -1,0 +1,27 @@
+.card {
+    @apply p-4 border border-blueGray-200 hover:bg-blueGray-100 hover:transform hover:cursor-pointer duration-500 rounded-md w-full;
+}
+
+.textbox {
+    @apply flex flex-col items-center justify-center w-full h-full;
+}
+
+.titlebox {
+    @apply w-full flex flex-col items-start truncate;
+}
+
+.titlelabel {
+    @apply text-xs text-sky-500;
+}
+
+.descriptionbox {
+    @apply w-full flex items-start;
+}
+
+.title {
+    @apply text-xl tracking-tight font-bold mb-4 truncate;
+}
+
+.dates {
+    @apply flex flex-row justify-center mt-3 text-sm items-center text-gray-600;
+}

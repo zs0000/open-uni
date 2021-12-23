@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useContext } from 'react'
-import { Outlet, useParams } from 'react-router'
+import { Navigate, Outlet, useParams } from 'react-router'
 import GrabClassDetails from '../apis/GrabClassDetails'
 import ViewClassDetails from '../components/common/ViewClassDetails/ViewClassDetails'
 import { useQuery, useQueryClient } from 'react-query'
@@ -9,9 +9,10 @@ export default function ClassDetails() {
 
     let { course_id } = useParams()
 
-    const queryClient = useQueryClient()
-  
+    
 
+
+ 
    
 
     const { isLoading, data, error, isFetching } = useQuery(`${course_id}-data`,() => 
@@ -20,13 +21,15 @@ export default function ClassDetails() {
  
 
 
-    if(isLoading || isFetching) {
+    if(isLoading || isFetching ) {
         return(
             <div>
                 <LoadingPage/>
             </div>
         )
     }
+
+
 
     return (
         

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Outlet, useParams } from 'react-router'
+import { Outlet, useNavigate, useParams } from 'react-router'
 import s from "./TeachersSidebar.module.css"
 import { Link } from "react-router-dom"
 import { useQueryClient } from 'react-query'
@@ -14,6 +14,17 @@ export default function TeachersSidebar() {
     const queryClient = useQueryClient()
 
     const data = queryClient.getQueryData(`${course_id}-data`)
+
+    if(data ===undefined) {
+
+      
+
+        return(
+            <div>
+                Loading...
+            </div>
+        )
+    }
 
     return (
         <Fragment>
@@ -35,6 +46,8 @@ export default function TeachersSidebar() {
                 <div className={s.sidebarlinks}>
                     <nav className={s.navlinks}>
                         <Link className={s.navlink} to={`/assignments/${recentlySelectedCourse}`}>Assignments</Link>
+                        <Link className={s.navlink} to={`/announcements/${recentlySelectedCourse}`}>Announcements</Link>
+                        <Link className={s.navlink} to={`/announcements/${recentlySelectedCourse}`}>Announcements</Link>
                     </nav>
                 </div>
                 </div>

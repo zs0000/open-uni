@@ -13,6 +13,8 @@ import UserCheck from '../../../apis/UserCheck'
 export default function NotEnrolledClassView({setAuth}) {
     let navigate = useNavigate()
     let { course_id } = useParams()
+    let userPersist = localStorage.getItem("username")
+
     const [test, setTest] = useState()
     const {enrollable, setEnrollable} = useContext(CourseContext)
     const [currentCount, setCurrentCount] = useState()
@@ -22,6 +24,7 @@ export default function NotEnrolledClassView({setAuth}) {
     const {usersLastName, setUsersLastName} = useContext(UsersContext)
     const {usersUsername, setUsersUsername} = useContext(UsersContext)
     const [loaded, setLoaded] = useState(false)
+    const [teach, setTeach] = useState(false)
     const {courseTitle, setCourseTitle} = useContext(CourseContext)
     const {courseDescription, setCourseDescription} = useContext(CourseContext)
     const {courseCapacity, setCourseCapacity} = useContext(CourseContext)
@@ -30,9 +33,9 @@ export default function NotEnrolledClassView({setAuth}) {
         headers : {'token': localStorage.getItem("token")}
     }
     
-    const courseUserCombo = course_id + usersUsername;
+    const courseUserCombo = course_id + userPersist;
 
-    console.log(courseUserCombo)
+    
     
     const handleJoinClass = async(e) => {
         try {
@@ -67,13 +70,16 @@ export default function NotEnrolledClassView({setAuth}) {
     const fetchUserData = async() =>{
         try {
             const userData = await queryClient.fetchQuery('user-data', () => DashboardApi.get("/", options), {
-                cacheTime: 100000,
+                cacheTime: Infinity,
+                staleTime: Infinity,
             })
             setUsersFirstName(userData.data.user_firstname)
             setUsersLastName(userData.data.user_lastname)
             setUsersRole(userData.data.user_role)
             setUsersUsername(userData.data.user_username)
-            
+            if(usersRole === "teacher") {
+                setTeach(true)
+            }
         } catch (err) {
             console.error(err.message)
         }
@@ -81,9 +87,10 @@ export default function NotEnrolledClassView({setAuth}) {
 
 const fetchEnrolledStatus = async () => {
     try {
-        const res = await queryClient.fetchQuery(`${course_id}${usersUsername}`, ()=>UserCheck.get(`/${course_id}/${usersUsername}`,{
+        const res = await queryClient.fetchQuery(`${course_id}${userPersist}`, ()=>UserCheck.get(`/${course_id}/${userPersist}`,{
             cacheTime: 100000,
         }))
+
         console.log(res)
         if(res.data.data.users.length === 0) {
             setEnrolled(false)
@@ -117,7 +124,17 @@ const fetchClassData = async () => {
         fetchEnrolledStatus()
         fetchUserData()
         fetchClassData()
+
+     
     },[])
+    if(enrolled === true) {
+        navigate(`/view/${course_id}`)
+    }
+    if(teach === true) {
+        navigate(`/view/${course_id}`, {replace:true})
+    }
+
+
 
     return (
         <Fragment>

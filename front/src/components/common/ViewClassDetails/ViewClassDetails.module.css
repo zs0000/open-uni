@@ -4,15 +4,20 @@
 }
 
 .responsive {
-    @apply w-full h-full flex flex-row justify-center  tracking-tight  xs:mt-10 ;
+    @apply  xl:w-8/12 lg:w-9/12 bg-white md:w-11/12 w-full h-full flex md:flex-row flex-col justify-center  tracking-tight  xs:mt-10 ;
     
 }
 
 .content {
-    @apply xl:w-8/12 lg:w-9/12 bg-white md:w-11/12 flex flex-col items-center w-full h-full;
+    @apply flex flex-col items-center w-full h-full border-r border-l border-blueGray-200;
     
 }
-
+.rightsidetop {
+    @apply w-full h-full px-4;
+}
+.rightsidemiddle {
+    @apply w-full h-full px-4;
+}
 .sidebar {
     @apply md:w-1/5 lg:w-1/6 h-full text-center bg-gray-100;
 }

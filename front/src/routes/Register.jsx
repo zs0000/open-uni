@@ -4,9 +4,14 @@ import s from "../styles/Register.module.css"
 import { Link } from "react-router-dom";
 import { UsersContext } from "../context/UsersContext";
 import AuthFinder from "../apis/AuthFinder";
+import { useQueryClient } from "react-query";
+import DashboardApi from "../apis/DashboardApi";
 export default function Register({
     setAuth,
 }) {
+
+    let queryClient = useQueryClient();
+
     const {users, setUser } = useContext(UsersContext)
     const [ inputs, setInputs ] = useState({
         firstname:"",
@@ -16,7 +21,9 @@ export default function Register({
         username: "",
         role: "user"
     })
-
+    const options = {
+      headers : {'token': localStorage.getItem("token")}
+  }
     const {firstname, lastname, email, password, username, role} = inputs;
 
     const onChange = (e) => {
@@ -40,7 +47,12 @@ export default function Register({
           localStorage.setItem("token", response.data.token);
  
           setUser(response.data.username);
+          const prefetchUserData = await queryClient.prefetchQuery('user-data', () => DashboardApi.get("/", options), {
+            cacheTime: Infinity,
+            staleTime: Infinity,
+        })
           setAuth(true);
+
           toast.success("Logged in Successfully");
       } catch (err) {
           setAuth(false);

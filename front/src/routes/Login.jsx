@@ -1,13 +1,20 @@
 import React, { Fragment, useState, useContext } from "react"
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import AuthFinder from "../apis/AuthFinder";
 import { UsersContext } from "../context/UsersContext";
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 import s from "../styles/Login.module.css";
+import DashboardApi from "../apis/DashboardApi";
 
 
 export default function Login({setAuth}) {
+  
+  let navigate = useNavigate()
+  let queryClient = useQueryClient()
+  const options = {
+    headers : {'token': localStorage.getItem("token")}
+}
   const {users, setUser} = useContext(UsersContext)
   const {usersRole, setUsersRole} = useContext(UsersContext)
   const {usersFirstName, setUsersFirstName} = useContext(UsersContext)
@@ -33,17 +40,19 @@ const onSubmitForm = async (e) => {
       })
       
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("username", response.data.username)
+      
       localStorage.setItem('is-user', response.data.role )
-      localStorage.setItem('first-name', response.data.firstname)
-      localStorage.setItem('last-name', response.data.lastname)
-      console.log(response)
+
       setUsersRole(response.data.role)
       setUser(response.data.username);
-      setUsersFirstName(response.data.firstname);
-      setUsersLastName(response.data.lastname);
       
+      const prefetchUserData = await queryClient.prefetchQuery('user-data', () => DashboardApi.get("/", options), {
+        cacheTime: Infinity,
+        staleTime: Infinity,
+    })
+      navigate(`/dashboard/`)
       setAuth(true);
+
       toast.success("Logged in Successfully");
 
   } catch (err) {

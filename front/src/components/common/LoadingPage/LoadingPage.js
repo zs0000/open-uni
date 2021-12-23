@@ -14,6 +14,7 @@ export default function LoadingPage() {
                         /
                     </p>
                 </div>
+              
             </div>
   
     )
