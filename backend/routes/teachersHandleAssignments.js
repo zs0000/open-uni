@@ -22,8 +22,21 @@ router.post("/new", async(req, res) => {
 });
 
 
+router.post("/upload_assignment/:user_username/:course_id/:assignment_id/", async(req,res) =>{
+    try {
+        const results = await pool.query("INSERT INTO uploadedassignments (assignment_upload_link, user_username, course_id, assignment_id) VALUES ($1, $2, $3, $4) RETURNING *;", [req.body.assignment_upload_link, req.params.user_username, req.params.course_id, req.params.assignment_id])
 
-
+        res.status(200).json({
+            status: "successfully uploaded assignment",
+            data: {
+                assignment: results.rows[0]
+            }
+        })
+    } catch (err) {
+        console.error(err.message)
+        res.status(401).json("error uploading assignment")
+    }
+} )
 
 
 

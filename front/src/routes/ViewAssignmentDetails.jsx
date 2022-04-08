@@ -11,6 +11,10 @@ import s from "../styles/ViewAssignmentDetails.module.css"
 import dateFormat, { masks } from "dateformat";
 import { UsersContext } from '../context/UsersContext'
 import DashboardApi from '../apis/DashboardApi'
+import DropboxChooser from "react-dropbox-chooser"
+import TeachersCreateAssignment from './TeachersCreateAssignment'
+import TeacherAssignmentCreateApi from '../apis/TeacherAssignmentCreateApi'
+
 
 export default function ViewAssignmentDetails() {
 
@@ -72,7 +76,25 @@ export default function ViewAssignmentDetails() {
         fetchUserData()
         fetchAssignmentDetails();
     },[])
+    const [url, setUrl] = useState("");
+    let recentlySelectedCourse = localStorage.getItem("recently-selected-course")
+    const handleSuccess = async(files) => {
+        try {
+           
+            const uploadAssignment = await TeacherAssignmentCreateApi.post(`/upload_assignment/${usersUsername}/${course_id}/${assignment_id}`,{
+                assignment_upload_link:files[0].link
+            })
+            console.log(uploadAssignment)
+           
+            navigate(`/view/${recentlySelectedCourse}`, {replace:true})
+      console.log(files[0]);
+        } catch (err) {
+            console.error(err.message)
+            
+        }
+        
 
+    }
 
     if (loaded === false){
         
@@ -128,6 +150,21 @@ export default function ViewAssignmentDetails() {
                         <Link className={s.materiallink} to="https://www.google.com/" target="_blank" rel='noopener noreferrer'>
                             {assignmentLink}
                         </Link>
+                        
+                    </div>
+                    <div className={s.assignmentupload}>
+                     
+                    <DropboxChooser 
+    appKey={"1go7uqysqtpwwlv"}
+    success={(files) => handleSuccess(files)}
+    cancel={() => console.log("closed")}
+    multiselect={true}
+    extensions={['.pdf']} >
+    <div className="dropbox-button">Submit Assignment</div>        
+</DropboxChooser>
+<span className={s.message}>
+                            (Assignments must be uploaded to your personal dropbox to be submitted. Only PDF files will be accepted.)
+                        </span>
                     </div>
                     
                     </div>

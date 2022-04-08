@@ -60,7 +60,9 @@ export default function QuestionsComponent({users}){
     }
     return(
         <div className={s.main}>
+             
             <div className={s.content}>
+               
             <div className={s.questions}>
                 {moreThanThreeAssignments === true ? recentQuestions.slice(endPoint,startingPoint).reverse().map((item)=> (
                     <div className={item.question_status === false ? s.solvedquestion : s.question}>
@@ -87,7 +89,7 @@ export default function QuestionsComponent({users}){
                     
                 </div>
                 )) : recentQuestions.map((item) => (
-                    <div className={s.question}>
+                    <div className={item.question_status === false ? s.solvedquestion : s.question}>
                         <span className={s.title}>
                             {item.question_title}
                         </span>
@@ -117,9 +119,9 @@ export default function QuestionsComponent({users}){
     )
                     }
         return(
-            <>
-            Blank
-            </>
+            <span className={s.blanked}>
+            Questions
+            </span>
 
         )
 }

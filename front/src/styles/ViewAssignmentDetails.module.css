@@ -62,3 +62,10 @@
     @apply mx-1;
 }
 
+.assignmentupload {
+    @apply flex flex-col items-center justify-center mt-4;
+}
+
+.message {
+    @apply w-2/3 text-gray-600;
+}

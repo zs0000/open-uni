@@ -106,3 +106,12 @@ CREATE TABLE answers(
     answered_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     answer_is_final BOOLEAN
 );
+
+CREATE TABLE uploadedassignments(
+    upload_id SERIAL PRIMARY KEY,
+    assignment_upload_link VARCHAR(255) NOT NULL,
+    user_username VARCHAR(100) NOT NULL,
+    course_id INT NOT NULL,
+    assignment_id INT NOT NULL,
+    uploaded_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

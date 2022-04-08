@@ -4,12 +4,13 @@ import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { UsersContext } from "../context/UsersContext";
 import DashboardApi from "../apis/DashboardApi";
 import React, { Fragment, useState, useEffect, useContext } from "react"
+import { useNavigate } from "react-router";
 
 
 export default function Home() {
   const {users, setUser} = useContext(UsersContext)
   const {usersRole, setUsersRole} = useContext(UsersContext)
-  
+  let navigate = useNavigate()
   const [username, setUsername] = useState("")
   const options = {
       headers : {'token': localStorage.getItem("token")}
@@ -33,6 +34,10 @@ export default function Home() {
       }
   }
 
+  const handleLoginClick = () => {
+    navigate(`/login`, {replace:true})
+  }
+
   useEffect(() => {
       getUsername()
   },[])
@@ -43,18 +48,14 @@ export default function Home() {
           <div className={s.content}>
             <div className={s.card}>
               <div className={s.cardtitlebox}>
-              
+              CourseConnect
               </div>
-              <div className={s.lottie}>
-        <Player
-  autoplay
-  loop
-  src="https://assets3.lottiefiles.com/packages/lf20_RItkEz.json"
-  className={s.lotted}
->
-  <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />
-</Player>
-        </div>
+              <div className={s.buttonbox}>
+                <button className={s.button} onClick={() => handleLoginClick()}>
+                  Login
+                </button>
+              </div>
+              
             </div>
           </div>
 

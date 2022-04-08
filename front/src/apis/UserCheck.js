@@ -6,8 +6,8 @@ import axios from "axios";
 
 
 const baseURL = process.env.NODE_ENV === 'production'
- ? "/check_user" 
- : "http://localhost:3001/check_user";
+ ? "/api/v1/check_user" 
+ : "http://localhost:3001/api/v1/check_user";
 
 
 export default axios.create({

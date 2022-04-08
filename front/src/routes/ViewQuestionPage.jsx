@@ -248,11 +248,16 @@ export default function ViewQuestionPage(){
                         </div>
                         ))}
            
-                     <div className={s.replybox}>
+                    {usersUsername === undefined || usersUsername === null ? 
+                    <div className={s.replybox}>
+                        <span className={s.signedout}>
+                        please sign in.
+                        </span>
+                    </div> : <div className={s.replybox}>
                            
                      <textarea className={s.reply} placeholder="Type your message here." name="messageText" value={messageText} onChange={e => onChange(e)} />
                            <button className={s.button} onClick={onSubmitForm}>Reply</button>
-                       </div>
+                       </div>}
                        </div>
                       
                 </div>
