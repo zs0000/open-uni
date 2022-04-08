@@ -21,10 +21,24 @@ import TeachersCreateAssignmentComponent from "./components/common/TeachersCreat
 import TeachersCreateAssignment from "./routes/TeachersCreateAssignment";
 import TeachersCreateAnnoucementComponent from "./components/common/TeachersCreateAnnouncement/TeachersCreateAnnouncementComponent";
 import ClassAssignments from "./routes/ClassAssignments";
+import ClassAnnouncements from "./routes/ClassAnnouncements";
 import NotEnrolledClassView from "./components/common/NotEnrolledClassView/NotEnrolledClassView";
 import ViewAssignmentDetails from "./routes/ViewAssignmentDetails";
-
-
+import ViewAnnouncementDetails from "./routes/ViewAnnouncementDetails";
+import { AnnouncementContextProvider } from "./context/AnnouncementContext";
+import ClassStudents from "./routes/ClassStudents";
+import ViewStudentsPage from "./routes/ViewStudentsPage";
+import { MessagesContextProvider } from "./context/MessagesContext";
+import ViewOpenCourses from "./routes/ViewOpenCourses";
+import 'animate.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { SelectedUserContextProvider } from "./context/SelectedUserContext";
+import ViewStudentProfile from "./routes/ViewStudentProfile";
+import ViewConversationPage from "./routes/ViewConversationPage";
+import ClassQuestions from "./routes/ClassQuestions";
+import CreateAQuestionPage from "./routes/CreateAQuestionPage";
+import ViewQuestionPage from "./routes/ViewQuestionPage";
 toast.configure()
 
 const queryClient = new QueryClient()
@@ -64,6 +78,9 @@ const App = () => {
     <UsersContextProvider>
       <CourseContextProvider>
         <AssignmentContextProvider>
+          <AnnouncementContextProvider>
+            <MessagesContextProvider>
+              <SelectedUserContextProvider>
         <QueryClientProvider client={queryClient}>
 <div className={s.bar}>
   <Navbar setAuth={setAuth} />
@@ -81,20 +98,42 @@ const App = () => {
           />
           <Route path="/create_assignment" element={<TeachersCreateAssignmentComponent/>}/>
           <Route path="/create_announcement" element={<TeachersCreateAnnoucementComponent/>}/>
+          <Route path="/open_courses" element={isAuthenticated ? <ViewOpenCourses/> : <Navigate to="/login" />}/>
           <Route path="view"  >
-            <Route path=":course_id" element={<ClassDetails/> } />
+            <Route path=":course_id" element={isAuthenticated ? <ClassDetails/> : <Navigate to="/login" /> } />
+            
+          
           </Route>
           <Route path="join"  >
             <Route path=":course_id" element={isAuthenticated ? <NotEnrolledClassView setAuth={setAuth} /> : <Navigate to="/dashboard/"/> } />
+          </Route>
+          <Route path="profile"  >
+            <Route path=":user_username" element={<ViewStudentProfile  /> } />
           </Route>
           <Route path="assignments"  >
             <Route path=":course_id" element={<ClassAssignments/> } />
             <Route path=":course_id/:assignment_id" element={<ViewAssignmentDetails/> } />
           </Route>
           <Route path="announcements"  >
-            <Route path=":course_id" element={<ClassAssignments/> } />
-            <Route path=":course_id/:announcement_id" element={<ViewAssignmentDetails/> } />
+            <Route path=":course_id" element={<ClassAnnouncements/> } />
+            <Route path=":course_id/:announcement_id" element={<ViewAnnouncementDetails/> } />
           </Route>
+          <Route path="roster"  >
+            <Route path=":course_id" element={<ViewStudentsPage/> } />
+            <Route path=":course_id/:course_user_combo" element={<ViewAnnouncementDetails/> } />
+          </Route>
+          <Route path="inbox"  >
+            <Route path=":conversation_key" element={<ViewConversationPage/>} />
+          </Route>
+          <Route path="questions"  >
+            <Route path=":course_id" element={isAuthenticated ? <ClassQuestions/> : <Navigate to="/login"/>} />
+            <Route path=":course_id/:question_id" element={isAuthenticated ? <ViewQuestionPage/> : <Navigate to="/login"/>} />
+            
+          </Route>
+          <Route path="ask_question"  >
+            <Route path=":course_id" element={isAuthenticated ? <CreateAQuestionPage/> : <Navigate to="/login"/>} />
+          </Route>
+         
           
           <Route
       path="*"
@@ -103,9 +142,15 @@ const App = () => {
     />
           
         </Routes>
-   
+        <script>
+             AOS.init()
+         </script>
     </div>
+    
     </QueryClientProvider>
+    </SelectedUserContextProvider>
+    </MessagesContextProvider>
+    </AnnouncementContextProvider>
     </AssignmentContextProvider>
     </CourseContextProvider>
 </UsersContextProvider>

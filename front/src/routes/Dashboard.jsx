@@ -5,16 +5,23 @@ import s from "../styles/Dashboard.module.css"
 import StudentDashboard from "../components/common/StudentDashboard/StudentDashboard"
 import { Link } from "react-router-dom"
 import TeachersClassesComponent from "../components/common/TeachersClassesComponent/TeachersClassesComponent"
-import { Outlet } from "react-router"
+import { Navigate, Outlet, useNavigate } from "react-router"
 import { QueryClient, useQuery } from "react-query"
 import LoadingPage from "../components/common/LoadingPage/LoadingPage"
+import MessagesComponent from "../components/common/MessagesComponent/MessagesComponent"
+import TeachersDashboard from "../components/common/TeachersDashboard/TeachersDashboard"
+import QuestionsComponent from "../components/common/QuestionsComponent/QuestionsComponent"
+
+
 export default function Dashboard({setAuth}) {
     const {users, setUser} = useContext(UsersContext)
     const {usersRole, setUsersRole} = useContext(UsersContext)
     const {usersFirstName, setUsersFirstName} = useContext(UsersContext)
     const {usersLastName, setUsersLastName} = useContext(UsersContext)
     const {usersFullName, setUsersFullName} = useContext(UsersContext)
-    
+
+    let navigate = useNavigate()
+
     const [username, setUsername] = useState("")
     const options = {
         headers : {'token': localStorage.getItem("token")}
@@ -22,7 +29,9 @@ export default function Dashboard({setAuth}) {
     const [loaded, setLoaded] = useState(false)
     const queryClient = new QueryClient()
     
-
+    const handleViewCourses = () => {
+        navigate(`/open_courses`, { replace: true })
+    }
     
 
     async function getUsername() {
@@ -47,7 +56,7 @@ export default function Dashboard({setAuth}) {
 
             if(userData.data.user_username !== null){
                 setLoaded(true)
-                console.log("should be true")
+           
             }
         } catch (err) {
             console.error(err.message)
@@ -59,7 +68,6 @@ export default function Dashboard({setAuth}) {
         getUsername()
         
     },[])
-
     if(loaded === false) {
         return(<LoadingPage />)
     }
@@ -87,9 +95,20 @@ export default function Dashboard({setAuth}) {
                     
                 </div>
                 <div className={s.middle}>
-                  
-                   <TeachersClassesComponent/>
+                 <TeachersDashboard
+                 usersFullName={usersFullName}
+                 usersFirstName={usersFirstName}
+                 usersLastName={usersLastName}
+                 usersRole={usersRole}
+                 users={users}
+                 />
+                 <div>
+                     <QuestionsComponent
+                     users={users}
+                     />
+                 </div>
                 </div>
+                
             </div>
             </div>
             <Outlet />
@@ -110,6 +129,12 @@ export default function Dashboard({setAuth}) {
                             Welcome <strong>{usersFirstName}!</strong>
                             
                         </h2>
+                        <div className={s.buttonbox}>
+                        <button className={s.button} onClick={()=> handleViewCourses()}>
+                            View Courses
+                        </button>
+                        </div>
+                        
                      </div>
                  </div>
                  <div className={s.middle}>
@@ -120,6 +145,11 @@ export default function Dashboard({setAuth}) {
                  usersRole={usersRole}
                  users={users}
                  />
+                <div className={s.questionscomponent}>
+                     <QuestionsComponent
+                     users={users}
+                     />
+                 </div>
                  </div>
                  </div>
              </div>

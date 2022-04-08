@@ -29,9 +29,10 @@ export default function StudentsClassesComponent({
         const fetchAvailableCourses = async() => {
             try {
                
-               const res = await StudentsAllAvailableClasses.get(`/retrieve/${userPersist}`);
+               const res = await StudentsAllAvailableClasses.get(`/all/${userPersist}`);
                 
-               setCourses(res.data.data.courses)
+               setCourses(res.data.data.enrolledCourses)
+              
 
           
                
@@ -56,11 +57,17 @@ export default function StudentsClassesComponent({
     }
 
 
-
+    const handleFindClassesButton = () => {
+        navigate(`/open_courses`, { replace: true })
+    }
 
     return (
-        <div>
-           {courses.map((item) => (
+        <div className={s.main}>
+            <span className={s.classestitle}>
+                Courses
+            </span>
+            <div className={s.cards}>
+           {courses ? courses.map((item) => (
                 <div className={s.card} onClick={() => handleCourseSelect(item.course_id)}  key={item.course_id}>
                     <div className={s.cardtext}>
                         <div  className={s.titlebox}>
@@ -76,9 +83,20 @@ export default function StudentsClassesComponent({
                     </div>
                 </div>
             ))
+            :
+            
+            <div className={s.blank}>
+                <span className={s.blankmessage}>
+            No Courses.
+            </span>
+            <button className={s.blankbutton} onClick={() => handleFindClassesButton()}>
+               View Courses
+            </button>
 
+            </div>
             }
-        
+           
+        </div>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import TeachersSidebar from '../components/common/TeachersSidebar/TeachersSideba
 import { useQuery, useQueryClient } from 'react-query';
 import StudentsSidebar from '../components/common/StudentsSidebar/StudentsSidebar';
 import GrabAssignmentDetails from "../apis/GrabAssignmentDetails"
+import GrabAnnouncements from '../apis/GrabAnnouncements';
 
 
 export default function ClassAnnouncements() {
@@ -16,18 +17,18 @@ export default function ClassAnnouncements() {
     const {announcementsList, setAnnouncements} = useContext(CourseContext)
     let navigate = useNavigate()
     let { course_id } = useParams()
-    
+    let newArray = [];
     const { isLoading, data, isError } = useQuery(`${course_id}-assignments`, () =>  GrabClassDetails.get(`/announcements/${course_id}`))  
 
     const userData = queryClient.getQueryData(`user-data`)
 
     const handleAnnouncementSelect = async(announcement_id) => {
 
-        const prefetchAnnouncementData = await queryClient.prefetchQuery(`${course_id}-${announcement_id}-data`, () => GrabAssignmentDetails.get(`/${course_id}/${announcement_id}`), {
+        const prefetchAnnouncementData = await queryClient.prefetchQuery(`${course_id}-${announcement_id}-data`, () => GrabAnnouncements.get(`/${course_id}/${announcement_id}`), {
             staleTime: Infinity,
             cacheTime: Infinity,
         } )
-        navigate(`/announcements/${course_id}/${announcement_id}`)
+        navigate(`/announcements/${course_id}/${announcement_id}`, {replace:true})
     }
 
     
@@ -38,6 +39,8 @@ export default function ClassAnnouncements() {
                 const res = await GrabClassDetails.get(`/announcements/${course_id}`)
                 
                 setAnnouncements(res.data.data.announcements)
+           
+                
    
         
          
@@ -61,6 +64,13 @@ export default function ClassAnnouncements() {
     }
 
     if(userData.data.user_role === "user") {
+        for(let i = 0; i < announcementsList.length; i++){
+            newArray.push(announcementsList[i])
+            
+        }
+        var reversedArray = newArray.reverse()
+       
+      
         return (
             <Fragment>
             <div className={s.main}>
@@ -74,34 +84,25 @@ export default function ClassAnnouncements() {
                     <div className={s.right}>
                 <div className={s.toptitlebox}>
                         <h2 className={s.toptitle}>
-                            Current Assignments
+                            Current Announcements
                         </h2>
                     </div>
-            {announcementsList.map((item) => (
+                    {reversedArray.map((item) => (
                 <div className={s.card} onClick={() => handleAnnouncementSelect(item.announcement_id)}>
                     <div className={s.textbox}>
                     <div className={s.titlebox}>
                     <span className={s.title}>
-                    {item.assignment_title}
+                    {item.announcement_title}
                     </span>
                     </div>
                     <div className={s.descriptionbox}>
                     <span className={s.description}>
-                    {item.assignment_description}
+                    {item.announcement_description}
                     </span>
                     </div>
                     </div>
                     <div className={s.dates}>
-                        <div className={s.startdate}>
-                            <span className={s.start}>
-                            <strong>Assigned: </strong>{dateFormat(item.announcement_start_date, "dddd, mmmm dS, yyyy")}
-                            </span>
-                        </div>
-                        <div className={s.duedate}>
-                            <span className={s.due}>
-                            <strong>Due: </strong>{dateFormat(item.announcement_due_date, "dddd, mmmm dS, yyyy")}
-                            </span>
-                        </div>
+                        
                     </div>
                 </div>
             ))}
@@ -113,9 +114,15 @@ export default function ClassAnnouncements() {
         )
     }
 
-
-
+    for(let i = 0; i < announcementsList.length; i++){
+        newArray.push(announcementsList[i])
+        
+    }
+    var reversedArray = newArray.reverse()
+  
+    
     return (
+        
 
         <Fragment>
             <div className={s.main}>
@@ -133,8 +140,8 @@ export default function ClassAnnouncements() {
                             Current Announcements
                         </h2>
                     </div>
-            {announcementsList.map((item) => (
-                <div className={s.card}>
+                    {reversedArray.map((item) => (
+                <div className={s.card} onClick={() => handleAnnouncementSelect(item.announcement_id)}>
                     <div className={s.textbox}>
                     <div className={s.titlebox}>
                     <span className={s.title}>
@@ -148,16 +155,7 @@ export default function ClassAnnouncements() {
                     </div>
                     </div>
                     <div className={s.dates}>
-                        <div className={s.startdate}>
-                            <span className={s.start}>
-                            {dateFormat(item.announcement_start_date, "dddd, mmmm dS, yyyy")}
-                            </span>
-                        </div>
-                        <div className={s.duedate}>
-                            <span className={s.due}>
-                            {dateFormat(item.announcement_due_date, "dddd, mmmm dS, yyyy")}
-                            </span>
-                        </div>
+                        
                     </div>
                 </div>
             ))}

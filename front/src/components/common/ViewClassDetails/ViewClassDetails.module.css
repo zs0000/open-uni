@@ -1,15 +1,15 @@
 .main {
-    @apply w-screen min-h-screen flex flex-col bg-gray-200 items-center;
-
+    @apply w-screen min-h-screen flex flex-col items-center;
+    background-color: #F3E9DC;
 }
 
 .responsive {
-    @apply  xl:w-8/12 lg:w-9/12 bg-white md:w-11/12 w-full h-full flex md:flex-row flex-col justify-center  tracking-tight  xs:mt-10 ;
+    @apply  xl:w-8/12 lg:w-9/12 bg-white bg-opacity-30 md:w-11/12 w-full h-full flex md:flex-row flex-col justify-center  tracking-tight  xs:mt-10 ;
     
 }
 
 .content {
-    @apply flex flex-col items-center w-full h-full border-r border-l border-blueGray-200;
+    @apply flex flex-col items-center bg-gray-100 bg-opacity-50 w-full h-full border-r border-l border-[#F3E9DC] md:py-10;
     
 }
 .rightsidetop {
@@ -18,12 +18,15 @@
 .rightsidemiddle {
     @apply w-full h-full px-4;
 }
+.rightsidebottom {
+    @apply w-full h-full px-4 border-t border-[#F3E9DC];
+}
 .sidebar {
-    @apply md:w-1/5 lg:w-1/6 h-full text-center bg-gray-100;
+    @apply md:w-1/5 lg:w-1/6 h-full text-center;
 }
 
 .sidebartop {
-    @apply w-full h-full flex flex-col justify-center mb-2 border-b pt-6 pb-2 border-blueGray-300;
+    @apply w-full h-full flex flex-col justify-center mb-2 border-b pt-6 pb-2 border-[#F3E9DC];
    
 }
 
@@ -41,5 +44,31 @@
 }
 
 .button {
-    @apply px-6 py-3 mt-3 bg-blueGray-200 shadow-sm rounded-lg;
+    @apply px-6 py-3 mt-3 border-[#F3E9DC] border w-full hover:bg-[#F3E9DC] hover:transform duration-500;
+}
+
+.assignments {
+    @apply font-bold ml-1 mt-4;
+}
+.assignmentslabel {
+    @apply mt-4;
+}
+.announcements {
+    @apply font-bold ml-1 mt-4;
+}
+.announcementslabel {
+    @apply mt-4;
+}
+.students {
+    @apply font-bold ml-3 mt-4;
+}
+.studentslabel {
+    @apply mt-4;
+}
+.teacherbuttons{
+    @apply flex md:flex-row flex-col w-full justify-evenly mb-10;
+}
+
+.buttonbox {
+    @apply w-full;
 }

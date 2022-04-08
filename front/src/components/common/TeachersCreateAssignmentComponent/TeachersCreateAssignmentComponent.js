@@ -90,13 +90,13 @@ export default function TeachersCreateAssignmentComponent() {
                                 <label className={s.inputtitle}>
                                 Starting Date
                                 </label>
-                                <input className={s.shortinput} type="date" name="startDate" max="216" placeholder="Enter start date" value={startDate} onChange={e => onChange(e)} />
+                                <input className={s.shortinput} type="date" name="startDate"  placeholder="Enter start date" value={startDate} onChange={e => onChange(e)} />
                             </div>
                             <div className={s.inputcontainer}>
                                 <label className={s.inputtitle}>
                                 Due Date
                                 </label>
-                                <input className={s.shortinput} type="date" name="dueDate" max="216" placeholder="Enter start date" value={dueDate} onChange={e => onChange(e)} />
+                                <input className={s.shortinput} type="date" name="dueDate"  placeholder="Enter start date" value={dueDate} onChange={e => onChange(e)} />
                             </div>
                             
             

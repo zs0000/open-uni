@@ -1,6 +1,15 @@
 .card {
-    @apply w-full h-full shadow-sm mb-1 p-4 px-6  hover:cursor-pointer hover:transform duration-500 hover:bg-blueGray-200 bg-gray-100 border border-gray-200 border-opacity-60 rounded ;
-    
+    @apply w-full h-24 mb-1 p-4 px-6  hover:cursor-pointer hover:transform duration-500 hover:bg-[#E0C1AE] ;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cards {
+    @apply flex flex-col mx-4 pb-2;
 }
 
 .title{
@@ -8,7 +17,7 @@
 }
 
 .top {
-    @apply w-full h-full;
+    @apply w-full ;
 }
 
 .toptitle {
@@ -16,5 +25,29 @@
 }
 
 .main {
-    @apply bg-gray-50 p-4 px-8 rounded ;
+    @apply w-full h-full pb-2 px-2;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.classestitle{
+    @apply font-bold antialiased w-full flex flex-col items-center justify-center md:text-lg text-center  py-2 text-blueGray-800;
+}
+
+.blank {
+    @apply flex flex-col items-center justify-center w-full h-full  py-3.5;
+}
+
+.blankbutton {
+    @apply px-3 py-1 bg-white text-sm bg-opacity-50 rounded-sm border border-gray-200;
+}
+
+
+
+.blankmessage {
+    @apply w-full h-full flex flex-col pb-4 text-xl items-center justify-center ;
 }

@@ -5,12 +5,12 @@ const pool = require("../db/db");
 
 router.get("/:course_id/:announcement_id", async(req, res) => {
     try {
-        const results = await pool.query("SELECT * FROM announcements WHERE (announcement_id) = ($1)", [req.params.annoucement_id])
+        const results = await pool.query("SELECT * FROM announcements WHERE (course_id, announcement_id) = ($1, $2)", [req.params.course_id, req.params.announcement_id])
     
         res.status(200).json({
             status: "successfully retrieved annoucement",
             data: {
-                announcement: results.rows,
+                announcement: results.rows[0],
             }
         })
   
@@ -21,14 +21,14 @@ router.get("/:course_id/:announcement_id", async(req, res) => {
 });
 
 //Retrieves all announcements for one course
-router.get("/:course_id", async(req, res) => {
+router.get("/all/:course_id", async(req, res) => {
     try {
         const results = await pool.query("SELECT * FROM announcements WHERE (course_id) = ($1)", [req.params.course_id])
     
         res.status(200).json({
             status: "successfully retrieved annoucements",
             data: {
-                announcements: results.rows,
+                announcements: results
             }
         })
   

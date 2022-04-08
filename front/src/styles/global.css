@@ -4,6 +4,7 @@
 
 @layer base {
     body {
+        @apply antialiased;
         font-family: 'Outfit', sans-serif;
     }
 

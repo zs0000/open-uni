@@ -1,7 +1,13 @@
 .card {
-    @apply p-4 border  border-blueGray-200 hover:bg-blueGray-100 hover:transform hover:cursor-pointer duration-500 rounded-md w-full;
+    @apply p-4 border  border-[#F3E9DC] shadow-sm hover:bg-[#F3E9DC] hover:transform hover:cursor-pointer duration-500 rounded-md w-full;
+    background: rgba(255, 241, 196, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     min-height:100%
-
+    
 }
 
 .textbox {
@@ -13,7 +19,8 @@
 }
 
 .titlelabel {
-    @apply text-xs text-indigo-600 pt-2;
+    @apply text-xs  pt-2;
+    color: #895737;
 }
 
 
@@ -27,9 +34,10 @@
 }
 
 .title {
-    @apply text-3xl tracking-tight font-bold mt-1 truncate;
+    @apply lg:text-4xl text-3xl tracking-tight font-bold mt-1 truncate;
 }
 
 .dates {
-    @apply h-full flex flex-row justify-end mt-4 mr-2 text-xs items-end text-blueGray-800;
+    @apply h-full flex flex-row justify-end mt-4 mr-2 text-xs items-end;
+    color: #5E3023;
 }

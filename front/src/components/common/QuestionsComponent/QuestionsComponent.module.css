@@ -1,0 +1,63 @@
+.main {
+    @apply w-full h-full flex flex-row  justify-center items-center;
+    
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.content{
+    @apply w-full h-full flex pb-1 flex-row justify-center;
+    
+    
+}
+
+.question {
+    @apply w-full flex flex-col items-center justify-center my-1 p-4  hover:cursor-pointer hover:transform duration-500 hover:bg-[#573927] ;
+    background: rgba(112, 72, 49, 0.767);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.solvedquestion {
+    @apply w-full flex flex-col items-center justify-center my-1 p-4  hover:cursor-pointer hover:transform duration-500 hover:bg-[#395728] ;
+    background: rgba(50, 83, 30, 0.76);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+
+.questions {
+    @apply grid grid-cols-3 gap-1 px-1 w-full;
+}
+
+.title {
+    @apply font-bold text-xl text-center mx-2 text-white;
+}
+
+.coursetitle{
+    @apply my-2 tracking-tighter text-gray-300;
+}
+
+.status {
+    @apply text-white ;
+}
+
+.open {
+    @apply text-amber-200;
+}
+
+.solved {
+    @apply text-green-200;
+}

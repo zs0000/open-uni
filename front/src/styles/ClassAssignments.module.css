@@ -1,19 +1,30 @@
 .main {
-    @apply min-h-screen w-full flex flex-col items-center
+    @apply min-h-screen w-full flex flex-col items-center;
+    background-color: #F3E9DC;
 }
 
 .responsive {
-    @apply w-full h-full flex flex-col items-center  lg:w-9/12 xl:w-8/12 bg-white;
+    @apply w-full h-full flex flex-col items-center  lg:w-9/12 xl:w-8/12 bg-white bg-opacity-30;
 }
 
 .content {
-    @apply flex flex-row justify-center w-full h-full pt-10 ;
+    @apply flex md:flex-row flex-col justify-center w-full h-full pt-10 bg-gray-100 bg-opacity-50 border-r border-l border-[#F3E9DC] md:py-10;
 }
+
 
 .card {
-    @apply p-4 mb-1 bg-white w-full rounded shadow hover:bg-blueGray-100 hover:cursor-pointer hover:transform duration-300;
+    @apply p-4 mb-1 hover:bg-[#ffffff] w-full border border-[#F3E9DC] rounded shadow-sm hover:cursor-pointer hover:transform duration-300;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.textbox {
+    @apply w-full ;
+}
 .title {
     @apply text-3xl tracking-tight font-bold ;
 }
@@ -27,15 +38,15 @@
 }
 
 .descriptionbox {
-    @apply pl-3 mx-2 ;
+    @apply pl-3 mx-2 w-full ;
 }
 
 .description {
-    @apply text-blueGray-600;
+    @apply text-blueGray-600 w-full;
 }
 
 .dates {
-    @apply w-full flex flex-col items-end justify-end text-sm;
+    @apply w-full flex flex-col items-end justify-end text-sm ;
 }
 
 .toptitlebox {
@@ -47,5 +58,13 @@
 }
 
 .right {
-    @apply flex flex-col h-full w-full items-center bg-white px-1 border-r border-l border-blueGray-200;
+    @apply flex flex-col h-full w-full items-center  px-1 border-r border-l border-blueGray-200;
+}
+
+.deletebutton {
+    @apply px-3   py-2 mt-2 border border-gray-300 rounded-lg bg-red-800 hover:transform duration-300 hover:bg-red-700 hover:text-white text-gray-200;
+}
+
+.deletebox {
+    @apply w-full  flex justify-end items-end;
 }

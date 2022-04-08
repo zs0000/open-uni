@@ -1,0 +1,63 @@
+.main {
+    @apply min-h-screen w-full flex flex-col items-center;
+    background-color: #F3E9DC;
+}
+
+.responsive {
+    @apply w-full h-full flex flex-col items-center  lg:w-9/12 xl:w-8/12 ;
+}
+
+.content {
+    @apply flex md:flex-row flex-col justify-center w-full h-full pt-10 border-r border-l border-[#F3E9DC] md:py-10;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.card {
+    @apply p-4 mb-1  w-full border border-[#F3E9DC] rounded shadow-sm hover:bg-[#ffffff] hover:cursor-pointer hover:transform duration-300;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.title {
+    @apply text-3xl tracking-tight font-bold ;
+}
+
+.titlebox {
+    @apply pb-2;
+}
+
+.sidebar {
+    @apply md:w-1/5 lg:w-1/6 h-full text-center ;
+}
+
+.descriptionbox {
+    @apply pl-3 mx-2 ;
+}
+
+.description {
+    @apply text-blueGray-600;
+}
+
+.dates {
+    @apply w-full flex flex-col items-end justify-end text-sm;
+}
+
+.toptitlebox {
+    @apply py-4 pt-6
+}
+
+.toptitle {
+    @apply text-lg tracking-widest text-[#5E3023]
+}
+
+.right {
+    @apply flex flex-col h-full w-full items-center  px-1 border-r border-l border-[#F3E9DC];
+}

@@ -1,5 +1,11 @@
 .card {
-    @apply p-4 border border-blueGray-200 hover:bg-blueGray-100 hover:transform hover:cursor-pointer duration-500 rounded-md w-full;
+    @apply p-4 border border-[#F3E9DC] shadow-sm hover:bg-[#F3E9DC] hover:transform hover:cursor-pointer duration-500 rounded-md w-full;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .textbox {
@@ -11,7 +17,8 @@
 }
 
 .titlelabel {
-    @apply text-xs text-sky-500;
+    @apply text-xs ;
+    color:#895737;
 }
 
 .descriptionbox {
@@ -19,9 +26,10 @@
 }
 
 .title {
-    @apply text-xl tracking-tight font-bold mb-4 truncate;
+    @apply text-2xl tracking-tight font-bold mb-4 truncate;
 }
 
 .dates {
-    @apply flex flex-row justify-center mt-3 text-sm items-center text-gray-600;
+    @apply flex flex-row justify-center mt-3 text-xs items-center;
+    color: #5E3023;
 }

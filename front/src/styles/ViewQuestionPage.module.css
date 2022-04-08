@@ -1,0 +1,123 @@
+.right {
+    @apply flex flex-col h-full w-full items-center  px-1 border-r border-l border-blueGray-200;
+}
+.main {
+    @apply min-h-screen w-full flex flex-col items-center;
+    background-color: #F3E9DC;
+}
+
+.responsive {
+    @apply w-full h-full flex flex-col items-center bg-white bg-opacity-30  lg:w-9/12 xl:w-8/12 ;
+}
+
+.content {
+    @apply flex md:flex-row flex-col border-r border-l border-[#F3E9DC] justify-center w-full h-full pt-10 bg-gray-100 bg-opacity-50 md:py-10;
+}
+
+.sidebar {
+    @apply md:w-1/5 lg:w-1/6 h-full text-center ;
+}
+
+.questioncontainer {
+    @apply w-full h-full flex flex-col  items-center justify-center py-4;
+}
+
+.question {
+    @apply flex flex-col w-full md:w-5/6 xl:w-2/3 3xl:w-1/2 mb-4 bg-[#e7cdaf] rounded-xl;
+}
+
+.questiontitlebox {
+    @apply w-full flex flex-col justify-center items-center text-white mb-2 py-2;
+    background: rgba(66, 43, 28, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.questionnamebox {
+    @apply flex flex-col items-center w-1/2 md:w-1/3 xl:w-1/4 xs:text-xs md:text-sm xl:text-base tracking-tighter bg-[#704a2bb4] text-gray-100 rounded justify-center px-2 my-1 mx-1 bg-opacity-60 h-56 max-h-96;
+    
+}
+
+.questionname{
+    @apply  truncate w-full flex justify-center items-center mt-2;
+}
+
+.questionusername{
+    @apply truncate w-full flex justify-center ;
+}
+
+.questiontitle {
+    @apply my-4 md:text-3xl font-bold antialiased xl:text-4xl;
+    
+}
+
+.questionsecondarycontainer{
+    @apply flex md:flex-row flex-col w-full justify-evenly;
+}
+
+.questiondatebox {
+    @apply w-1/2 flex flex-col;
+}
+
+.questioncontentbox{
+    @apply w-full flex flex-row border rounded-xl  border-gray-300 border-opacity-50 p-1;
+}
+
+.questioncontent{
+    @apply tracking-tighter text-justify flex justify-center items-center mx-4 xl:text-lg w-full;
+}
+
+
+.questiondate {
+    @apply md:mb-2 mt-4 text-center xs:text-xs text-blueGray-200;
+}
+
+.replybox {
+    @apply w-full md:w-5/6 xl:w-2/3 3xl:w-1/2 flex flex-row items-center justify-center;
+}
+
+.reply{
+    @apply w-full mt-1 h-24 border border-gray-300;
+}
+
+.button {
+    @apply w-1/6 border border-gray-300 h-24 mt-1 text-white bg-[#a07e61] hover:bg-[#3c6d32d3] hover:transform duration-300 rounded-r;
+}
+
+.answercontent{
+    @apply tracking-tighter text-justify flex justify-start my-2 mx-4 xl:text-lg w-full;
+}
+
+.answernamebox {
+    @apply flex flex-col items-center w-1/2 md:w-1/3 xl:w-1/4 xs:text-xs md:text-sm xl:text-base tracking-tighter bg-[#382210d5] text-gray-100 rounded justify-center px-2 pt-6 my-1 mx-1 bg-opacity-60 h-56 max-h-96;
+    
+}
+.solvedanswernamebox {
+    @apply flex flex-col items-center w-1/2 md:w-1/3 xl:w-1/4 xs:text-xs md:text-sm xl:text-base tracking-tighter bg-[#5b8622d5] text-gray-100 rounded justify-center px-2 my-1 mx-1 bg-opacity-60 h-56 max-h-96;
+    
+}
+
+
+.answer{
+    @apply flex flex-col w-full md:w-5/6 xl:w-2/3 3xl:w-1/2 even:bg-[#ffffff5e] my-1 rounded-xl bg-opacity-10;
+}
+
+.solvedanswer{
+    @apply flex flex-col w-full md:w-5/6 xl:w-2/3 3xl:w-1/2 even:bg-[#feffd65e] bg-opacity-10 border-green-300 border rounded-xl;
+}
+
+.solvedbutton {
+    @apply px-4 py-1 mb-1  rounded bg-green-600  bg-opacity-80;
+}
+
+.picturebox {
+    @apply w-full flex flex-col items-center ;
+}
+
+.picture {
+    @apply rounded-full w-1/3 shadow-xl;
+    
+}

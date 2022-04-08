@@ -24,6 +24,7 @@ export default function NotEnrolledClassView({setAuth}) {
     const {usersLastName, setUsersLastName} = useContext(UsersContext)
     const {usersUsername, setUsersUsername} = useContext(UsersContext)
     const [loaded, setLoaded] = useState(false)
+    const {professor, setProfessor} = useContext(CourseContext)
     const [teach, setTeach] = useState(false)
     const {courseTitle, setCourseTitle} = useContext(CourseContext)
     const {courseDescription, setCourseDescription} = useContext(CourseContext)
@@ -39,7 +40,7 @@ export default function NotEnrolledClassView({setAuth}) {
     
     const handleJoinClass = async(e) => {
         try {
-            const joinRequest = await StudentsJoinClassApi.post(`/${course_id}/${usersUsername}/${usersFirstName}/${usersLastName}/${courseUserCombo}`)
+            const joinRequest = await StudentsJoinClassApi.post(`/${course_id}/${usersUsername}/${usersFirstName}/${usersLastName}/${courseUserCombo}/${courseTag}/${courseTitle}/${professor}`)
             navigate(`/view/${course_id}`, { replace: true })
             setEnrolled(true)
             setEnrollable(false)
@@ -113,7 +114,7 @@ const fetchClassData = async () => {
         setCourseDescription(res.data.data.courseDetails[0].course_description)
         setCourseTag(res.data.data.courseDetails[0].course_tag)
         setCourseCapacity(res.data.data.courseDetails[0].course_capacity)
-      
+        setProfessor(res.data.data.courseDetails[0].professor)
     } catch (err) {
         console.error(err.message)
     }
@@ -149,7 +150,7 @@ const fetchClassData = async () => {
                           
                         </div>
                         <div className={s.descriptionbox}>
-                            <span className={s.coursedescription}>Description:</span>
+                           
                             <p className={s.description}>{courseDescription}</p>
                         </div>
                         </div>
@@ -164,7 +165,7 @@ const fetchClassData = async () => {
                 
                     </span>
                     <span>
-   dsa
+
                     </span>
                 </div>
                         </div>

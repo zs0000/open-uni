@@ -4,7 +4,7 @@ const pool = require("../db/db");
 
 //all courses available
 
-router.get("/retrieve/:users", async(req, res) => {
+router.get("/retrieve", async(req, res) => {
     try {
         const results = await pool.query("SELECT * FROM courses;")
     
@@ -21,7 +21,22 @@ router.get("/retrieve/:users", async(req, res) => {
     }
 });
 
+router.get("/all/:user_username", async(req,res) => {
+    try {
+        const results = await pool.query("SELECT * FROM studentsjoined WHERE user_username = $1;",[req.params.user_username])
 
+         res.status(200).json({
+             status: "success",
+             data: {
+                 enrolledCourses: results.rows,
+             }
+         })
+        
+    } catch (err) {
+        console.error(err);
+        res.status(401).json("Error retrieving enrolled classes")
+    }
+})
 
 
 

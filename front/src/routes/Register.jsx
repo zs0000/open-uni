@@ -56,7 +56,7 @@ export default function Register({
           toast.success("Logged in Successfully");
       } catch (err) {
           setAuth(false);
-          console.log(err);
+          console.error(err.message)
           toast.error("Invalid username/password combination");
       }
   }

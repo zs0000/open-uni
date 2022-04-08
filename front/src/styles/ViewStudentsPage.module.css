@@ -1,0 +1,65 @@
+.main {
+    @apply w-full h-full flex flex-col items-center min-h-screen;
+    background-color: #F3E9DC;
+}
+
+.content {
+    @apply xl:w-8/12 lg:w-9/12 md:w-11/12 w-full h-full bg-gray-50 bg-opacity-50 border-r border-l border-[#F3E9DC] md:py-10 flex flex-col md:flex-row justify-center pt-10;
+}
+
+.sidebar {
+    @apply md:w-1/5 lg:w-1/6 h-full text-center border-r border-r border-[#F3E9DC];
+}
+
+.right {
+    @apply w-full h-full grid grid-cols-3 py-10;
+}
+
+.card {
+    @apply w-full h-full flex flex-col items-center px-2 pb-6;
+
+}
+
+.dates {
+    @apply flex flex-row justify-evenly w-full mb-4 pt-4 tracking-tight;
+}
+
+.titlebox {
+    @apply flex flex-col items-center w-full bg-[#5E3023] rounded-md shadow mb-4;
+}
+.descriptionbox {
+    @apply flex flex-row items-center justify-center w-full;
+}
+.instructionbox {
+    @apply flex flex-col items-center justify-center text-lg w-full py-12 ;
+}
+
+.instruction {
+    @apply flex flex-col items-center  mx-10;
+}
+
+
+.middle {
+    @apply w-full h-full flex flex-col items-center  p-2 text-lg;
+}
+
+.title {
+    @apply text-white font-black antialiased py-4 text-4xl ;
+}
+.description {
+    @apply m-2 text-lg xl:w-2/3;
+}
+.materiallink {
+    @apply ml-1 underline text-blueGray-800 hover:text-sky-500 hover:transform duration-500;
+}
+
+.materiallinkbox {
+    @apply flex items-start justify-start w-full;
+}
+.startdate {
+    @apply mx-1;
+}
+.duedate {
+    @apply mx-1;
+}
+

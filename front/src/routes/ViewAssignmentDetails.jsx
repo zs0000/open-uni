@@ -9,6 +9,8 @@ import { AssignmentContext } from '../context/AssignmentContext'
 import { CourseContext } from '../context/CourseContext'
 import s from "../styles/ViewAssignmentDetails.module.css"
 import dateFormat, { masks } from "dateformat";
+import { UsersContext } from '../context/UsersContext'
+import DashboardApi from '../apis/DashboardApi'
 
 export default function ViewAssignmentDetails() {
 
@@ -25,13 +27,33 @@ export default function ViewAssignmentDetails() {
     const {assignmentDate, setAssignmentDate} = useContext(AssignmentContext)
     const {assignmentDue, setAssignmentDue} = useContext(AssignmentContext)
     const {assignmentLink, setAssignmentLink} = useContext(AssignmentContext)
-
+    const {usersRole, setUsersRole} = useContext(UsersContext);
+    const {usersFirstName, setUsersFirstName} = useContext(UsersContext)
+    const {usersLastName, setUsersLastName} = useContext(UsersContext)
+    const {usersUsername, setUsersUsername} = useContext(UsersContext)
+    const options = {
+        headers : {'token': localStorage.getItem("token")}
+    }
     useEffect(() => {
-        
+        const fetchUserData = async() =>{
+            try {
+                const userData = await queryClient.fetchQuery('user-data', () => DashboardApi.get("/", options), {
+                    cacheTime: Infinity,
+                    staleTime: Infinity
+                })
+                setUsersFirstName(userData.data.user_firstname)
+                setUsersLastName(userData.data.user_lastname)
+                setUsersRole(userData.data.user_role)
+                setUsersUsername(userData.data.user_username)
+                
+            } catch (err) {
+                console.error(err.message)
+            }
+    }
         const fetchAssignmentDetails = async() => {
             try {
                 const fetchAssignmentData = await queryClient.fetchQuery(`${course_id}-${assignment_id}-data`,() => GrabAssignmentDetails.get(`/${course_id}/${assignment_id}`))
-                console.log(fetchAssignmentData)
+       
                 setAssignmentTitle(fetchAssignmentData.data.data.assignment.assignment_title)
                 setAssignmentDescription(fetchAssignmentData.data.data.assignment.assignment_description)
                 setAssignmentInstruction(fetchAssignmentData.data.data.assignment.assignment_instruction)
@@ -47,7 +69,7 @@ export default function ViewAssignmentDetails() {
                 console.error(err.message)
             }
         }
-
+        fetchUserData()
         fetchAssignmentDetails();
     },[])
 
@@ -61,6 +83,7 @@ export default function ViewAssignmentDetails() {
         )
     }
 
+
     return (
         <div className={s.main}>
             <div className={s.content}>
@@ -70,6 +93,15 @@ export default function ViewAssignmentDetails() {
                 <div className={s.right}>
                    
                         <div className={s.card}>
+                 
+                    <div className={s.middle}>
+                    
+                    <div className={s.titlebox}>
+                        
+                        <h3 className={s.title}>
+                        {assignmentTitle}
+                        </h3>
+                    </div>
                     <div className={s.dates}>
                         <span className={s.startdate}>
                             <strong>Assigned: </strong>{dateFormat(assignmentDate, "dddd, mmmm dS, yyyy")}
@@ -78,24 +110,7 @@ export default function ViewAssignmentDetails() {
                         <strong>Due: </strong>{dateFormat(assignmentDue, "dddd, mmmm dS, yyyy")}
                         </span>
                     </div>
-                    <div className={s.middle}>
                     
-                    <div className={s.titlebox}>
-                        <span>
-                            <strong>Title:</strong> 
-                        </span>
-                        <h3 className={s.title}>
-                        {assignmentTitle}
-                        </h3>
-                    </div>
-                    <div className={s.descriptionbox}>
-                    <span>
-                          <strong>  Description: </strong>
-                        </span>
-                        <p className={s.description}>
-                            {assignmentDescription}
-                        </p>
-                    </div>
                     </div>
                     <div className={s.instructionbox}>
                         <span>

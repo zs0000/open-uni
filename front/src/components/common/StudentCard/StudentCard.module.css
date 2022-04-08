@@ -1,0 +1,27 @@
+.card {
+    @apply m-2 flex flex-col items-center px-0 hover:px-2 hover:cursor-pointer rounded-full hover:bg-[#F3E9DC] hover:shadow hover:transform duration-500 py-1;
+}
+
+.picturebox {
+    @apply w-full flex flex-col items-center ;
+}
+
+.picture {
+    @apply rounded-full w-1/3;
+}
+
+.textbox {
+    @apply flex flex-col items-center mt-1;
+}
+
+.username {
+    @apply font-bold antialiased;
+}
+
+.studentname{
+    @apply text-sm;
+}
+
+.firstname {
+    @apply mr-1;
+}

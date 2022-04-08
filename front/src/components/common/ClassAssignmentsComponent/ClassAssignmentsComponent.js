@@ -11,7 +11,7 @@ export default function ClassAssignmentsComponent() {
 
     let queryClient = useQueryClient()
     let navigate = useNavigate
-    let { course_id } = useParams()    
+    let { course_id } = useParams()   
 
     let blankData = 
   {
@@ -23,24 +23,40 @@ export default function ClassAssignmentsComponent() {
         }
 
     const { isLoading, data, isError } = useQuery(`${course_id}-assignments`, () =>  GrabClassDetails.get(`/assignments/${course_id}`))  
-
+   
 
     const {assignmentsList, setAssignments} = useContext(CourseContext)
  
-    if(isLoading) {
+    if(!assignmentsList) {
         return(<div>
             fetching...
         </div>)
     }
+    let moreThanThreeAssignments = false;
+ 
+  if(assignmentsList !== undefined && assignmentsList.length > 0){
 
-  if(data.data.data.assignments.length > 0){
-      console.log(data.data.data)
-        setAssignments(data.data.data.assignments)
-      
+        setAssignments(assignmentsList)
+        let startingPoint = assignmentsList.length;
+        let endPoint = assignmentsList.length;
+  
+    if(assignmentsList !== undefined && startingPoint > 3) {
+       moreThanThreeAssignments = true
+    
+        if(startingPoint > 3) {
+            endPoint = endPoint - 3
+
+    
+
+        }
+    }
+        
       return(
           <div className={s.main}>
               <div className={s.content}>
-                {assignmentsList.slice(0,3).map((item)=> (
+                {moreThanThreeAssignments === true ? assignmentsList.slice(endPoint, startingPoint).reverse().map((item)=> (
+                    <AssignmentsCard item={item} />
+                )) : assignmentsList.reverse().map((item) =>(
                     <AssignmentsCard item={item} />
                 ))}
               </div>

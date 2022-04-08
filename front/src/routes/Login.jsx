@@ -57,7 +57,7 @@ const onSubmitForm = async (e) => {
 
   } catch (err) {
       setAuth(false);
-      console.log(err);
+      console.error(err.message);
     
       toast.error("Invalid username/password combination");
   }
@@ -66,6 +66,12 @@ const onSubmitForm = async (e) => {
       <Fragment>
         <div className={s.main}>
           <form onSubmit={onSubmitForm} className={s.form}>
+            <div className={s.introtextbox}>
+              <span className={s.welcome}>
+                Welcome!
+              </span>
+             
+            </div>
           <div className={s.loginform}>
             <label className={s.inputlabel}>
               Email address
@@ -103,6 +109,9 @@ const onSubmitForm = async (e) => {
                     </div>
                  
             <Link to="/register" className={s.loginbuttontwo}>Sign up</Link>
+          <span className={s.courseconnect}>
+            CourseConnect
+          </span>
           </form>
           
         </div>

@@ -1,0 +1,110 @@
+.main {
+    @apply w-full flex flex-col items-center min-h-screen;
+    background-color: #F3E9DC;
+}
+
+.content {
+    @apply xl:w-8/12 lg:w-9/12 md:w-11/12 w-full h-screen bg-white bg-opacity-40 flex xl:flex-row  flex-col justify-center items-center pt-10;
+}
+
+.messagesbox {
+    @apply flex flex-col items-center justify-center w-full h-full ;
+}
+
+.messages {
+    @apply xl:w-4/6 md:w-5/6 py-2 bg-white overflow-y-scroll h-5/6 rounded-md w-full  md:border  border-b border-gray-200 mt-4 flex flex-col ;
+}
+
+.message{
+    @apply  my-1 mx-2 xs:text-sm md:text-base 2xl:text-lg  tracking-tight antialiased ;
+}
+
+
+.blankmessage {
+    @apply md:text-2xl;
+}
+
+.skeletonbox {
+    @apply  w-11/12 h-full flex items-center justify-center md:py-20 md:m-10;
+}
+
+.sentcard {
+    @apply xl:mr-16 lg:mr-8 md:mr-4  flex flex-col justify-end items-end;
+
+}
+
+.senttext {
+    @apply 2xl:w-80 md:w-72 w-56 flex flex-col md:pl-8 pl-4 pr-4 py-3 bg-[#F3E9DC] text-[#071046] rounded;
+    background: rgba(197, 196, 107, 0.363);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.receivedcard {
+    @apply xl:ml-16 lg:ml-8 md:ml-4  flex flex-col justify-start items-start;
+}
+
+.receivedtext {
+    @apply 2xl:w-80 md:w-72 w-56  flex flex-col md:pr-8  px-4 py-3 bg-[#cfc5b9] rounded;
+    background: rgba(136, 132, 98, 0.363);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.textbox {
+    @apply xl:w-4/6 w-5/6 py-2   flex flex-row items-center justify-center;
+}
+
+.textinput {
+    @apply w-full flex items-center shadow justify-center rounded-md rounded-r-none h-full my-1  p-1;
+}
+
+.button {
+    @apply w-1/5 h-full py-4 shadow hover:shadow-md rounded-l-none hover:bg-[#87b38b] text-white bg-[#dda16c] hover:transform duration-300 rounded-md;
+}
+
+.sentby {
+    @apply text-gray-400 text-xs my-1;
+}
+
+.senttime{
+    @apply text-gray-400 text-xs;
+}
+
+.name {
+    @apply antialiased text-[#071046] pt-2;
+}
+
+.blankmain {
+    @apply flex flex-col items-center justify-center bg-gradient-to-b from-gray-200 via-white to-gray-400 w-full min-h-screen;
+}
+
+.blankcontent{ 
+    @apply flex flex-col items-center justify-center;
+}
+
+.blankfirst {
+    @apply text-center font-bold md:text-4xl text-2xl;
+}
+
+.blanksecond {
+    @apply my-1 mb-2 md:text-2xl text-lg tracking-tight;
+}
+
+.blankbutton {
+    @apply my-2 py-3 px-8  hover:transform hover:px-10 duration-200;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+

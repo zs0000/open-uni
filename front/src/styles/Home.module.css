@@ -30,8 +30,7 @@
 
 
 .cardtitlebox {
-    @apply  absolute z-30 h-full w-full p-96;
-    background-image: linear-gradient(to right, #00b4db, #0083b0);
+    @apply  absolute z-30 h-full w-full p-96 bg-[#F3E9DC];
 }
 
 @screen xs {

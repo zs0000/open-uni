@@ -27,16 +27,17 @@ module.exports = {
       sky: colors.sky,
       white: colors.white,
       gray: colors.trueGray,
-      rose: colors.rose,
+      red: colors.red,
       green: colors.green,
       indigo: colors.indigo,
       blueGray:colors.blueGray,
+      amber:colors.amber,
     },
 
   },
   variants: {
     extend: {
-  
+      
     },
   },
   plugins: [],

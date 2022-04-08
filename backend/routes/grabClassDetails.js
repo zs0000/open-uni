@@ -60,5 +60,42 @@ router.get("/assignments/:course_id", async(req, res) => {
     }
 });
 
+//grabs all announcements for a class
+
+router.get("/announcements/:course_id", async(req, res) => {
+    try {
+        const results = await pool.query("SELECT * FROM announcements WHERE (course_id) = ($1)", [req.params.course_id])
+    
+        res.status(200).json({
+            status: "successfully retrieved announcements",
+            data: {
+                announcements: results.rows,
+            }
+        })
+  
+    } catch (err) {
+        console.error(err);
+        res.status(401).json("Error retrieving announcements");
+    }
+});
+//grabs all students enrolled in course
+
+router.get("/students/:course_id", async(req, res) => {
+    try {
+        const results = await pool.query("SELECT * FROM studentsjoined WHERE (course_id) = ($1)", [req.params.course_id])
+    
+        res.status(200).json({
+            status: "successfully retrieved students",
+            data: {
+                students: results.rows,
+            }
+        })
+  
+    } catch (err) {
+        console.error(err);
+        res.status(401).json("Error retrieving announcements");
+    }
+});
+
 
 module.exports = router;

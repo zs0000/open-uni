@@ -8,6 +8,8 @@ import TeachersSidebar from '../components/common/TeachersSidebar/TeachersSideba
 import { useQuery, useQueryClient } from 'react-query';
 import StudentsSidebar from '../components/common/StudentsSidebar/StudentsSidebar';
 import GrabAssignmentDetails from "../apis/GrabAssignmentDetails"
+import LoadingPage from '../components/common/LoadingPage/LoadingPage';
+import DeleteAssignmentData from '../apis/DeleteAssignmentData';
 
 
 export default function ClassAssignments() {
@@ -16,8 +18,10 @@ export default function ClassAssignments() {
     const {assignmentsList, setAssignments} = useContext(CourseContext)
     let navigate = useNavigate()
     let { course_id } = useParams()
-    
-    const { isLoading, data, isError } = useQuery(`${course_id}-assignments`, () =>  GrabClassDetails.get(`/assignments/${course_id}`))  
+    let newArray = [];
+
+
+    const { isLoading, data, isError, isFetching } = useQuery(`${course_id}-assignments`, () =>  GrabClassDetails.get(`/assignments/${course_id}`))  
 
     const userData = queryClient.getQueryData(`user-data`)
 
@@ -47,6 +51,15 @@ export default function ClassAssignments() {
         }
         fetchAssignments()
     },[])    
+
+    if(isLoading || isFetching ) {
+        return(
+            <div>
+                <LoadingPage/>
+            </div>
+        )
+    }
+
         
     if(userData === undefined) {
 
@@ -61,6 +74,15 @@ export default function ClassAssignments() {
     }
 
     if(userData.data.user_role === "user") {
+        for(let i = 0; i < assignmentsList.length; i++){
+            newArray.push(assignmentsList[i])
+            
+        }
+        var reversedArray = newArray.reverse()
+      
+    
+
+        
         return (
             <Fragment>
             <div className={s.main}>
@@ -77,7 +99,7 @@ export default function ClassAssignments() {
                             Current Assignments
                         </h2>
                     </div>
-            {assignmentsList.map((item) => (
+            {reversedArray.map((item) => (
                 <div className={s.card} onClick={() => handleAssignmentSelect(item.assignment_id)}>
                     <div className={s.textbox}>
                     <div className={s.titlebox}>
@@ -92,11 +114,7 @@ export default function ClassAssignments() {
                     </div>
                     </div>
                     <div className={s.dates}>
-                        <div className={s.startdate}>
-                            <span className={s.start}>
-                            <strong>Assigned: </strong>{dateFormat(item.assignment_start_date, "dddd, mmmm dS, yyyy")}
-                            </span>
-                        </div>
+                   
                         <div className={s.duedate}>
                             <span className={s.due}>
                             <strong>Due: </strong>{dateFormat(item.assignment_due_date, "dddd, mmmm dS, yyyy")}
@@ -114,6 +132,27 @@ export default function ClassAssignments() {
     }
 
 
+    if(assignmentsList !== undefined) {
+        
+            for(let i = 0; i < assignmentsList.length; i++){
+                newArray.push(assignmentsList[i])
+                
+            }
+            var reversedArray = newArray.reverse()
+          
+        
+    }
+
+    const handleAssignmentDelete =  (course_id, assignment_id) => {
+    
+            const deleteAssignment = DeleteAssignmentData.delete(`/delete/${course_id}/${assignment_id}`)
+            console.log(deleteAssignment)
+            if(deleteAssignment.status === 200) {
+                navigate(`/view/${course_id}`, {replace:true})
+            }
+    
+        
+    }
 
     return (
 
@@ -133,8 +172,8 @@ export default function ClassAssignments() {
                             Current Assignments
                         </h2>
                     </div>
-            {assignmentsList.map((item) => (
-                <div className={s.card}>
+            {reversedArray.map((item) => (
+                <div className={s.card} onClick={() => handleAssignmentSelect(item.assignment_id)}>
                     <div className={s.textbox}>
                     <div className={s.titlebox}>
                     <span className={s.title}>
@@ -148,15 +187,16 @@ export default function ClassAssignments() {
                     </div>
                     </div>
                     <div className={s.dates}>
-                        <div className={s.startdate}>
-                            <span className={s.start}>
-                            {dateFormat(item.assignment_start_date, "dddd, mmmm dS, yyyy")}
-                            </span>
-                        </div>
                         <div className={s.duedate}>
                             <span className={s.due}>
+                                <strong>Due: </strong>
                             {dateFormat(item.assignment_due_date, "dddd, mmmm dS, yyyy")}
                             </span>
+                        </div>
+                        <div className={s.deletebox}>
+                            <button className={s.deletebutton} onClick={() => handleAssignmentDelete(course_id,item.assignment_id)}>
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>

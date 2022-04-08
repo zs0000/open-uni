@@ -1,10 +1,11 @@
 
 .bar {
-    @apply  fixed w-full flex flex-col items-center;
+    @apply   w-full h-full min-h-screen flex flex-col items-center;
     font-family: 'Outfit';
 }
 .itemscontainer {
-    @apply  w-full flex flex-row bg-sky-200 bg-opacity-70 absolute z-50 ;
+    @apply  w-full flex flex-row absolute z-50 ;
+    background-color: #DAB49D;
 }
 
 .items {

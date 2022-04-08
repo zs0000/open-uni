@@ -1,0 +1,43 @@
+.main {
+    @apply w-full h-full flex flex-col  justify-center items-center;
+    
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.conversationstitle{
+    @apply  font-bold antialiased w-full md:text-lg text-center  py-2 text-blueGray-800;
+}
+
+.content{
+    @apply w-full h-full flex   pb-1 flex-row justify-center;
+    
+    
+}
+
+.messagecard{
+    @apply my-1 border  border-gray-200 bg-white bg-opacity-50 hover:cursor-pointer hover:bg-white hover:shadow-md hover:transform hover:border-blueGray-100 duration-300  w-full flex items-center justify-center  h-14 rounded;
+}
+.newmessagecard{
+    @apply my-1 font-bold bg-green-100 text-gray-800 antialiased w-full flex items-center justify-center h-14 border hover:cursor-pointer border-gray-200 rounded;
+}
+
+.first {
+    @apply flex flex-col justify-start h-full w-1/2 mx-2;
+}
+.second {
+    @apply flex flex-col h-full w-1/2 mx-2;
+}
+
+.inboxtitle {
+    @apply w-full text-center my-1 tracking-tight antialiased text-sm;
+}
+
+.blankdata {
+    @apply w-full flex flex-col items-center justify-center h-48 bg-gray-50 bg-opacity-50 rounded my-2 text-gray-400;
+}
